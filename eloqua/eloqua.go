@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/google/go-querystring/query"
 	"io"
@@ -127,13 +128,20 @@ func (c *Client) RestRequest(endpoint string, method string, jsonData string) (*
 func (c *Client) getRequestDecode(endpoint string, v interface{}) (*Response, error) {
 	resp, err := c.RestRequest(endpoint, "GET", "")
 	defer resp.Body.Close()
-	// TODO - check the response further for common eloqua responses
+	if err != nil {
+		return resp, err
+	}
+
+	err = checkResponse(resp)
 	if err != nil {
 		return resp, err
 	}
 
 	if v != nil {
 		err = json.NewDecoder(resp.Body).Decode(v)
+		if err == io.EOF {
+			err = nil // ignore EOF errors caused by empty response body
+		}
 	}
 
 	return resp, err
@@ -157,7 +165,11 @@ func (c *Client) getRequestListDecode(endpoint string, v interface{}, opts *List
 	resp, err := c.RestRequest(endpoint, "GET", "")
 
 	defer resp.Body.Close()
-	// TODO - check the response further for common eloqua responses
+	if err != nil {
+		return resp, err
+	}
+
+	err = checkResponse(resp)
 	if err != nil {
 		return resp, err
 	}
@@ -232,4 +244,52 @@ func (c *Client) deleteRequest(endpoint string, v interface{}) (*Response, error
 	}
 
 	return c.RestRequest(endpoint, "DELETE", postBody)
+}
+
+// checkResponse checks the Eloqua response for errors
+// and returns them in a descriptive way if possible.
+func checkResponse(r *Response) error {
+	if c := r.StatusCode; 200 <= c && c <= 299 {
+		return nil
+	}
+
+	switch r.StatusCode {
+	case 301:
+		return errors.New("Login required")
+	case 304:
+		return errors.New("Not Modified")
+	case 400:
+		return errors.New("Bad Request")
+		// return errors.New("There was a missing reference.")
+		// return errors.New("There was a parsing error.")
+		// return errors.New("There was a serialization error.")
+		// return errors.New("There was a validation error")
+	case 401:
+		// return errors.New("Login required")
+		// return errors.New("Unauthorized")
+		return errors.New("You are not authorized to make this request")
+	case 403:
+		return errors.New("Forbidden")
+		// return errors.New("This service has not been enabled for your site.")
+		// return errors.New("XSRF Protection Failure")
+	case 404:
+		return errors.New("The requested resource was not found.")
+	case 409:
+		return errors.New("There was a conflict.")
+	case 412:
+		return errors.New("The resource you are attempting to delete has dependencies, and cannot be deleted")
+	case 413:
+		return errors.New("Storage space exceeded.")
+	case 429:
+		return errors.New("Too Many Requests")
+	case 500:
+		return errors.New("The service has encountered an error.")
+		// return errors.New("Internal Server Error")
+	case 502:
+		return errors.New("Bad Gateway")
+	case 503:
+		return errors.New("Service Unavailable")
+		// return errors.New("There was a timeout processing the request")
+	}
+	return errors.New("There was an issue performing your request.")
 }
