@@ -34,6 +34,7 @@ type Client struct {
 
 	// Various components of the API
 	Emails *EmailService
+	Users  *UserService
 }
 
 // NewClient creates a new instance of an Eloqua HTTP client
@@ -54,6 +55,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 
 	// Create services
 	c.Emails = &EmailService{client: c}
+	c.Users = &UserService{client: c}
 
 	return c
 }
@@ -203,7 +205,11 @@ func (c *Client) requestDecode(endpoint string, method string, v interface{}) (*
 
 	resp, err := c.RestRequest(endpoint, strings.ToUpper(method), postBody)
 	defer resp.Body.Close()
-	// TODO - check the response further for common eloqua responses
+	if err != nil {
+		return resp, err
+	}
+
+	err = checkResponse(resp)
 	if err != nil {
 		return resp, err
 	}

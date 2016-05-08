@@ -2,7 +2,7 @@
 
 go-eloqua is a Go library for accessing the Eloqua REST API's.
 
-**The library is currently in rapid development so production use is definately not advised**
+**The library is currently in rapid development so production use is definately not currently advised**
 
 Feel free to create a pull request to contribute to the project.
 
@@ -27,7 +27,7 @@ Feel free to create a pull request to contribute to the project.
 - [ ] Landing pages
 - [ ] Microsites
 - [ ] Option lists
-- [ ] Users
+- [x] Users - *Mostly done, Related objects to be added*
 - [ ] Campaigns
 - [ ] Custom objects
 - [ ] Custom object data

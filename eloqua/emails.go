@@ -24,6 +24,7 @@ type Email struct {
 	Name            string   `json:"name,omitempty"`
 	Permissions     []string `json:"permissions,omitempty"`
 	UpdatedAt       int      `json:"updatedAt,omitempty,string"`
+	UpdatedBy       int      `json:"updatedBy,omitempty,string"`
 	BounceBackEmail string   `json:"bouceBackEmail,omitempty"`
 	// TODO - contentSections
 	// TODO - dynamicContents
