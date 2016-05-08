@@ -56,14 +56,6 @@ type htmlContent struct {
 	Html        string `json:"html,omitempty"`
 }
 
-// Get an email object via its ID
-func (e *EmailService) Get(id int) (*Email, *Response, error) {
-	endpoint := fmt.Sprintf("/assets/email/%d?depth=complete", id)
-	email := &Email{}
-	resp, err := e.client.getRequestDecode(endpoint, email)
-	return email, resp, err
-}
-
 // Create a new email in eloqua
 func (e *EmailService) Create(name string, email *Email) (*Email, *Response, error) {
 	if email == nil {
@@ -73,4 +65,40 @@ func (e *EmailService) Create(name string, email *Email) (*Email, *Response, err
 	endpoint := "/assets/email"
 	resp, err := e.client.postRequestDecode(endpoint, email)
 	return email, resp, err
+}
+
+// Get an email object via its ID
+func (e *EmailService) Get(id int) (*Email, *Response, error) {
+	endpoint := fmt.Sprintf("/assets/email/%d?depth=complete", id)
+	email := &Email{}
+	resp, err := e.client.getRequestDecode(endpoint, email)
+	return email, resp, err
+}
+
+// Get a listing of email objets
+func (e *EmailService) List(opts *ListOptions) ([]Email, *Response, error) {
+	endpoint := "/assets/emails"
+	emails := new([]Email)
+	resp, err := e.client.getRequestListDecode(endpoint, emails, opts)
+	return *emails, resp, err
+}
+
+// Update an existing email in eloqua
+func (e *EmailService) Update(id int, name string, email *Email) (*Email, *Response, error) {
+	if email == nil {
+		email = &Email{}
+	}
+	email.ID = id
+	email.Name = name
+	endpoint := fmt.Sprintf("/assets/email/%d", email.ID)
+	resp, err := e.client.putRequestDecode(endpoint, email)
+	return email, resp, err
+}
+
+// Delete an existing email from eloqua
+func (e *EmailService) Delete(id int) (*Response, error) {
+	email := &Email{ID: id}
+	endpoint := fmt.Sprintf("/assets/email/%d", email.ID)
+	resp, err := e.client.deleteRequest(endpoint, email)
+	return resp, err
 }

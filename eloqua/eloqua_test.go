@@ -3,6 +3,7 @@ package eloqua
 import (
 	"net/http"
 	"net/http/httptest"
+	"reflect"
 	"strings"
 	"testing"
 )
@@ -36,10 +37,25 @@ func teardown() {
 	server.Close()
 }
 
+// testUrlParam is a helper to check url parameters are as expected
 func testUrlParam(t *testing.T, req *http.Request, name string, expectedVal string) {
 	recievedVal := req.URL.Query().Get(name)
 	if recievedVal != expectedVal {
 		t.Errorf("URL parameter '%s' is %s, expected %s", name, recievedVal, expectedVal)
+	}
+}
+
+// testMethod ensures the http method for a request is as expected
+func testMethod(t *testing.T, req *http.Request, method string) {
+	if req.Method != strings.ToUpper(method) {
+		t.Errorf("HTTP method is not as expected\nExpected: %s\nReceived: %s", strings.ToUpper(method), req.Method)
+	}
+}
+
+// testModels tests two structs against eachother
+func testModels(t *testing.T, testDesc string, test interface{}, expected interface{}) {
+	if !reflect.DeepEqual(test, expected) {
+		t.Errorf("%s data is not as expected.\nReturned \n%+v,\nWanted \n%+v", testDesc, test, expected)
 	}
 }
 
