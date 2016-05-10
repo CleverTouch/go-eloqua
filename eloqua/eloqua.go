@@ -33,8 +33,9 @@ type Client struct {
 	authHeader string
 
 	// Various components of the API
-	Emails *EmailService
-	Users  *UserService
+	Emails   *EmailService
+	Users    *UserService
+	Contacts *ContactService
 }
 
 // NewClient creates a new instance of an Eloqua HTTP client
@@ -56,6 +57,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	// Create services
 	c.Emails = &EmailService{client: c}
 	c.Users = &UserService{client: c}
+	c.Contacts = &ContactService{client: c}
 
 	return c
 }
@@ -75,6 +77,10 @@ type Response struct {
 	PageSize int `json:"pageSize,omitempty"`
 	// The total entities found in the query
 	Total int `json:"total,omitempty"`
+
+	// The returned response body in the event of an error
+	// Use this to help debug in the event of unknown errors
+	ErrorContent string `json:"-"`
 }
 
 // newReponse creates a new custom Response for the given http.Response
@@ -257,6 +263,11 @@ func (c *Client) deleteRequest(endpoint string, v interface{}) (*Response, error
 func checkResponse(r *Response) error {
 	if c := r.StatusCode; 200 <= c && c <= 299 {
 		return nil
+	}
+
+	content, err := ioutil.ReadAll(r.Body)
+	if err == nil {
+		r.ErrorContent = string(content)
 	}
 
 	switch r.StatusCode {

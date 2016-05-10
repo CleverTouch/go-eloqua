@@ -1,16 +1,16 @@
 # go-eloqua
 
-go-eloqua is a Go library for accessing the Eloqua REST API's.
+go-eloqua is a golang based library for accessing the Eloqua REST API's.
 
-**The library is currently in rapid development so production use is definately not currently advised**
+**The library is currently in rapid development so production use is not advised until the library has matured**
 
-Feel free to create a pull request to contribute to the project.
+Feel free to create a pull request to contribute to the project or open an issue to request a feature or report a bug.
 
 ## Rest API Implementation Status
 
 - [ ] Accounts
 - [ ] Activities
-- [ ] Contacts
+- [x] Contacts
 - [ ] Contact fields
 - [ ] Contact lists
 - [ ] Contact segments
@@ -42,4 +42,10 @@ Support for the bulk API is planned once all the REST endpoints are supported.
 
 ## License
 
-This library is distributed under the MIT license.
+This library is distributed under the MIT license. 
+
+## Attribution
+
+This project has drawn a lot of inspiration, patterns and teachings from the https://github.com/google/go-github project.
+
+The [Eloqua Developer Help Centre](https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/Welcome.htm) created by Oracle has provided a lot of assistance by having clear documentation and examples.
