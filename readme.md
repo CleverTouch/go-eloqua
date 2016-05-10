@@ -1,6 +1,6 @@
 # go-eloqua
 
-[![GoDoc](https://godoc.org/github.com/CleverTouch/go-eloqua/eloqua?status.svg)](https://godoc.org/github.com/CleverTouch/go-eloqua/eloqua)
+[![GoDoc](https://godoc.org/github.com/CleverTouch/go-eloqua/eloqua?status.svg)](https://godoc.org/github.com/CleverTouch/go-eloqua/eloqua) [![Build Status](https://travis-ci.org/CleverTouch/go-eloqua.svg?branch=master)](https://travis-ci.org/CleverTouch/go-eloqua) [![Coverage Status](https://coveralls.io/repos/github/CleverTouch/go-eloqua/badge.svg?branch=master)](https://coveralls.io/github/CleverTouch/go-eloqua?branch=master)
 
 go-eloqua is a golang based library for accessing the Eloqua REST API's.
 
