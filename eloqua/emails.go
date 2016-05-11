@@ -53,7 +53,7 @@ type Email struct {
 
 // htmlContent represents the htmlContent component of an email
 type htmlContent struct {
-	ContentType string `json:"assetType,omitempty"`
+	ContentType string `json:"type,omitempty"`
 	Html        string `json:"html,omitempty"`
 }
 

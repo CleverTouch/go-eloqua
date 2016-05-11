@@ -7,6 +7,31 @@ import (
 	"testing"
 )
 
+func TestContactCreate(t *testing.T) {
+	setup()
+	defer teardown()
+
+	input := &Contact{Name: "test@example.com", FirstName: "John Smith"}
+
+	addRestHandlerFunc("/data/contact", func(w http.ResponseWriter, req *http.Request) {
+		testMethod(t, req, "POST")
+		v := new(Contact)
+		json.NewDecoder(req.Body).Decode(v)
+		testModels(t, "Contact.Create body", v, input)
+
+		fmt.Fprint(w, `{"assetType":"Contact","id":"5","name":"test@example.com","firstName":"John Smith"}`)
+	})
+
+	contact, _, err := client.Contacts.Create("test@example.com", input)
+	if err != nil {
+		t.Errorf("Contacts.Create recieved error: %v", err)
+	}
+
+	input.ID = 5
+
+	testModels(t, "Contacts.Create", contact, input)
+}
+
 func TestContactGet(t *testing.T) {
 	setup()
 	defer teardown()
@@ -82,4 +107,28 @@ func TestContactUpdate(t *testing.T) {
 	input.Name = "Test Contact Updated"
 
 	testModels(t, "Contacts.Update", contact, input)
+}
+
+func TestContactDelete(t *testing.T) {
+	setup()
+	defer teardown()
+
+	input := &Contact{ID: 5}
+
+	addRestHandlerFunc("/data/contact/5", func(w http.ResponseWriter, req *http.Request) {
+		testMethod(t, req, "DELETE")
+		v := new(Contact)
+		json.NewDecoder(req.Body).Decode(v)
+		testModels(t, "Contacts.Delete body", v, input)
+		w.WriteHeader(200)
+	})
+
+	resp, err := client.Contacts.Delete(5)
+	if err != nil {
+		t.Errorf("Contacts.Delete recieved error: %v", err)
+	}
+
+	if resp.StatusCode != 200 {
+		t.Error("Contacts.Delete request failed")
+	}
 }

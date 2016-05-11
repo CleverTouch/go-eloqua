@@ -32,6 +32,29 @@ func TestEmailCreate(t *testing.T) {
 	testModels(t, "Emails.Create", email, input)
 }
 
+func TestEmailCreateWithoutPassingEmail(t *testing.T) {
+	setup()
+	defer teardown()
+
+	addRestHandlerFunc("/assets/email", func(w http.ResponseWriter, req *http.Request) {
+		testMethod(t, req, "POST")
+		v := new(Email)
+		json.NewDecoder(req.Body).Decode(v)
+		expected := &Email{Name: "Test Email 2"}
+		testModels(t, "Email.Create body (without model)", v, expected)
+
+		fmt.Fprint(w, `{"assetType":"Email","id":"2","Name":"Test Email 2","subject":"A test email"}`)
+	})
+
+	email, _, err := client.Emails.Create("Test Email 2", nil)
+	if err != nil {
+		t.Errorf("Emails.Create recieved error: %v", err)
+	}
+
+	expectedResult := &Email{AssetType: "Email", ID: 2, Name: "Test Email 2", Subject: "A test email"}
+	testModels(t, "Emails.Create (without model)", email, expectedResult)
+}
+
 func TestEmailGet(t *testing.T) {
 	setup()
 	defer teardown()
@@ -107,6 +130,29 @@ func TestEmailUpdate(t *testing.T) {
 	input.Name = "Test Email Updated"
 
 	testModels(t, "Emails.Update", email, input)
+}
+
+func TestUserUpdateWithoutPassingEmail(t *testing.T) {
+	setup()
+	defer teardown()
+
+	addRestHandlerFunc("/assets/email/8", func(w http.ResponseWriter, req *http.Request) {
+		testMethod(t, req, "PUT")
+		v := new(Email)
+		json.NewDecoder(req.Body).Decode(v)
+		expectedData := &Email{ID: 8, Name: "Test Email Updated"}
+		testModels(t, "Emails.Update body (without model)", v, expectedData)
+		fmt.Fprintf(w, `{"assetType":"Email","id":"8","Name":"%s","htmlContent":{"type": "RawHtmlContent","html":"Hello"}}`, v.Name)
+	})
+
+	email, _, err := client.Emails.Update(8, "Test Email Updated", nil)
+	if err != nil {
+		t.Errorf("Emails.Update recieved error: %v", err)
+	}
+
+	resultModel := &Email{AssetType: "Email", Name: "Test Email Updated",
+		ID: 8, HtmlContent: htmlContent{ContentType: "RawHtmlContent", Html: "Hello"}}
+	testModels(t, "Emails.Update (without model)", email, resultModel)
 }
 
 func TestEmailDelete(t *testing.T) {

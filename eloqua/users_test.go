@@ -80,6 +80,27 @@ func TestUserUpdate(t *testing.T) {
 	}
 
 	input.Name = "Test User Updated"
-
 	testModels(t, "Users.Update", user, input)
+}
+
+func TestUserUpdateWithoutPassingUser(t *testing.T) {
+	setup()
+	defer teardown()
+
+	addRestHandlerFunc("/system/user/8", func(w http.ResponseWriter, req *http.Request) {
+		testMethod(t, req, "PUT")
+		v := new(User)
+		json.NewDecoder(req.Body).Decode(v)
+		expectedData := &User{ID: 8, Name: "Test User Updated"}
+		testModels(t, "Users.Update body (without passing model)", v, expectedData)
+		fmt.Fprintf(w, `{"type":"User","id":"8","Name":"%s","description":"A test user"}`, v.Name)
+	})
+
+	user, _, err := client.Users.Update(8, "Test User Updated", nil)
+	if err != nil {
+		t.Errorf("Users.Update recieved error: %v", err)
+	}
+
+	resultModel := &User{Type: "User", Name: "Test User Updated", ID: 8, Description: "A test user"}
+	testModels(t, "Users.Update (without passing model)", user, resultModel)
 }
