@@ -22,18 +22,18 @@ type User struct {
 	CreatedBy            int      `json:"createdBy,omitempty,string"`
 	Description          string   `json:"description,omitempty`
 	RequestDepth         string   `json:"depth,omitempty"`
-	FolderId             int      `json:"folderId,omitempty,string"`
+	FolderID             int      `json:"folderId,omitempty,string"`
 	Name                 string   `json:"name,omitempty"`
 	Permissions          []string `json:"permissions,omitempty"`
 	UpdatedAt            int      `json:"updatedAt,omitempty,string"`
 	UpdatedBy            int      `json:"updatedBy,omitempty,string"`
 	ScheduledFor         int      `json:"scheduledFor,omitempty,string"`
-	SourceTemplateId     string   `json:"sourceTemplateId,omitempty"`
+	SourceTemplateID     string   `json:"sourceTemplateId,omitempty"`
 	BetaAccess           []string `json:"betaAccess,omitempty"`
 	Capabilities         []string `json:"capabilities,omitempty"`
 	Company              string   `json:"company,omitempty"`
-	DefaultAccountViewId int      `json:"defaultAccountViewId,omitempty,string"`
-	DefaultContactViewId int      `json:"defaultContactViewId,omitempty,string"`
+	DefaultAccountViewID int      `json:"defaultAccountViewId,omitempty,string"`
+	DefaultContactViewID int      `json:"defaultContactViewId,omitempty,string"`
 	EmailAddress         string   `json:"emailAddress,omitempty"`
 	// TODO - interfacePermissions
 	LoggedInAt string `json:"loggedInAt,omitempty"`
@@ -51,7 +51,7 @@ func (e *UserService) Get(id int) (*User, *Response, error) {
 	return user, resp, err
 }
 
-// Get a listing of user objets
+// List many Eloqua users
 func (e *UserService) List(opts *ListOptions) ([]User, *Response, error) {
 	endpoint := "/system/users"
 	users := new([]User)

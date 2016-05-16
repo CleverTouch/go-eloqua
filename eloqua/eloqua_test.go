@@ -37,8 +37,8 @@ func teardown() {
 	server.Close()
 }
 
-// testUrlParam is a helper to check url parameters are as expected
-func testUrlParam(t *testing.T, req *http.Request, name string, expectedVal string) {
+// testURLParam is a helper to check url parameters are as expected
+func testURLParam(t *testing.T, req *http.Request, name string, expectedVal string) {
 	recievedVal := req.URL.Query().Get(name)
 	if recievedVal != expectedVal {
 		t.Errorf("URL parameter '%s' is %s, expected %s", name, recievedVal, expectedVal)

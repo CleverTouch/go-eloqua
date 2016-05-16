@@ -60,10 +60,10 @@ func TestEmailGet(t *testing.T) {
 	defer teardown()
 
 	addRestHandlerFunc("/assets/email/1", func(w http.ResponseWriter, req *http.Request) {
-		testUrlParam(t, req, "depth", "complete")
+		testURLParam(t, req, "depth", "complete")
 		testMethod(t, req, "GET")
-		rJson := `{"assetType":"Email", "id": "1", "name":"Test Email 1"}`
-		fmt.Fprint(w, rJson)
+		rJSON := `{"assetType":"Email", "id": "1", "name":"Test Email 1"}`
+		fmt.Fprint(w, rJSON)
 	})
 
 	email, _, err := client.Emails.Get(1)
@@ -82,13 +82,13 @@ func TestEmailList(t *testing.T) {
 	reqOpts := &ListOptions{Count: 200, Page: 1}
 
 	addRestHandlerFunc("/assets/emails", func(w http.ResponseWriter, req *http.Request) {
-		testUrlParam(t, req, "depth", "minimal")
-		testUrlParam(t, req, "count", "200")
-		testUrlParam(t, req, "page", "1")
+		testURLParam(t, req, "depth", "minimal")
+		testURLParam(t, req, "count", "200")
+		testURLParam(t, req, "page", "1")
 		testMethod(t, req, "GET")
 
-		rJson := `{"elements":[{"id":"100", "name":"Test email 100","assetType": "Email"}], "page":1,"pageSize":200,"total":2}`
-		fmt.Fprint(w, rJson)
+		rJSON := `{"elements":[{"id":"100", "name":"Test email 100","assetType": "Email"}], "page":1,"pageSize":200,"total":2}`
+		fmt.Fprint(w, rJSON)
 	})
 
 	emails, resp, err := client.Emails.List(reqOpts)
@@ -151,7 +151,7 @@ func TestUserUpdateWithoutPassingEmail(t *testing.T) {
 	}
 
 	resultModel := &Email{AssetType: "Email", Name: "Test Email Updated",
-		ID: 8, HtmlContent: htmlContent{ContentType: "RawHtmlContent", Html: "Hello"}}
+		ID: 8, HTMLContent: HTMLContent{ContentType: "RawHtmlContent", HTML: "Hello"}}
 	testModels(t, "Emails.Update (without model)", email, resultModel)
 }
 

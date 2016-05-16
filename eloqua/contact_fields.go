@@ -62,7 +62,7 @@ func (e *ContactFieldService) Get(id int) (*ContactField, *Response, error) {
 	return contactField, resp, err
 }
 
-// Get a listing of contact field objets
+// List many eloqua contact fields
 func (e *ContactFieldService) List(opts *ListOptions) ([]ContactField, *Response, error) {
 	endpoint := "/assets/contact/fields"
 	contactFields := new([]ContactField)

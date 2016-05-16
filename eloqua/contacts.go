@@ -72,7 +72,7 @@ func (e *ContactService) Get(id int) (*Contact, *Response, error) {
 	return contact, resp, err
 }
 
-// Get a listing of contact objets
+// List many Eloqua contact objects
 func (e *ContactService) List(opts *ListOptions) ([]Contact, *Response, error) {
 	endpoint := "/data/contacts"
 	contacts := new([]Contact)

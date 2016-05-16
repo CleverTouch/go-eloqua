@@ -20,7 +20,7 @@ type Email struct {
 	CreatedAt       int      `json:"createdAt,omitempty,string"`
 	CreatedBy       int      `json:"createdBy,omitempty,string"`
 	RequestDepth    string   `json:"depth,omitempty"`
-	FolderId        int      `json:"folderId,omitempty,string"`
+	FolderID        int      `json:"folderId,omitempty,string"`
 	Name            string   `json:"name,omitempty"`
 	Permissions     []string `json:"permissions,omitempty"`
 	UpdatedAt       int      `json:"updatedAt,omitempty,string"`
@@ -28,13 +28,13 @@ type Email struct {
 	BounceBackEmail string   `json:"bouceBackEmail,omitempty"`
 	// TODO - contentSections
 	// TODO - dynamicContents
-	EmailFooterId int `json:"emailFooterId,omitempty,string"`
-	EmailHeaderId int `json:"emailHeaderId,omitempty,string"`
-	EmailGroupId  int `json:"emailGroupId,omitempty,string"`
-	EncodingId    int `json:"encodingId,omitempty,string"`
+	EmailFooterID int `json:"emailFooterId,omitempty,string"`
+	EmailHeaderID int `json:"emailHeaderId,omitempty,string"`
+	EmailGroupID  int `json:"emailGroupId,omitempty,string"`
+	EncodingID    int `json:"encodingId,omitempty,string"`
 	// TODO - fieldMerges
 	// TODO - forms
-	HtmlContent htmlContent `json:"htmlContent,omitempty"`
+	HTMLContent HTMLContent `json:"htmlContent,omitempty"`
 	// TODO - hyperlinks
 	// TODO - images
 	PlainTextEditable bool   `json:"isPlainTextEditable,omitempty",string`
@@ -51,10 +51,10 @@ type Email struct {
 	Style             string `json:"style,omitempty"`
 }
 
-// htmlContent represents the htmlContent component of an email
-type htmlContent struct {
+// HTMLContent represents the htmlContent model of an Eloqua email object
+type HTMLContent struct {
 	ContentType string `json:"type,omitempty"`
-	Html        string `json:"html,omitempty"`
+	HTML        string `json:"html,omitempty"`
 }
 
 // Create a new email in eloqua
@@ -76,7 +76,7 @@ func (e *EmailService) Get(id int) (*Email, *Response, error) {
 	return email, resp, err
 }
 
-// Get a listing of email objets
+// List many Eloqua email objetcs
 func (e *EmailService) List(opts *ListOptions) ([]Email, *Response, error) {
 	endpoint := "/assets/emails"
 	emails := new([]Email)

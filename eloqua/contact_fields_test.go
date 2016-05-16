@@ -37,7 +37,7 @@ func TestContactFieldGet(t *testing.T) {
 	defer teardown()
 
 	addRestHandlerFunc("/assets/contact/field/1005", func(w http.ResponseWriter, req *http.Request) {
-		testUrlParam(t, req, "depth", "complete")
+		testURLParam(t, req, "depth", "complete")
 		testMethod(t, req, "GET")
 		fmt.Fprint(w, `{"assetType":"ContactField","id":"10005","name":"First Name","dataType": "text", "displayType": "text", "updateType": "newNotBlank"}`)
 	})
@@ -58,13 +58,13 @@ func TestContactFieldList(t *testing.T) {
 	reqOpts := &ListOptions{Count: 200, Page: 1}
 
 	addRestHandlerFunc("/assets/contact/fields", func(w http.ResponseWriter, req *http.Request) {
-		testUrlParam(t, req, "depth", "minimal")
-		testUrlParam(t, req, "count", "200")
-		testUrlParam(t, req, "page", "1")
+		testURLParam(t, req, "depth", "minimal")
+		testURLParam(t, req, "count", "200")
+		testURLParam(t, req, "page", "1")
 		testMethod(t, req, "GET")
 
-		rJson := `{"elements":[{"assetType":"ContactField","id":"10005","name":"First Name","dataType": "text", "displayType": "text", "updateType": "newNotBlank"}], "page":1,"pageSize":200,"total":1}`
-		fmt.Fprint(w, rJson)
+		rJSON := `{"elements":[{"assetType":"ContactField","id":"10005","name":"First Name","dataType": "text", "displayType": "text", "updateType": "newNotBlank"}], "page":1,"pageSize":200,"total":1}`
+		fmt.Fprint(w, rJSON)
 	})
 
 	contactFields, resp, err := client.ContactFields.List(reqOpts)

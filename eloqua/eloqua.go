@@ -16,7 +16,8 @@ import (
 var _ = fmt.Printf
 var _ = ioutil.ReadAll
 
-// The client manages communications with the Eloqua API
+// Client manages communications with the Eloqua API. It contains services to access each
+// endpoint grouping so the API can be used in a fluent manner.
 type Client struct {
 	client *http.Client
 
@@ -64,7 +65,8 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	return c
 }
 
-// Custom eloqua response type
+// Response is a custom http response that, upon a standard http response,
+// contains eloqua specific details such as listing properies and error details.
 type Response struct {
 	*http.Response
 
@@ -90,7 +92,7 @@ func newResponse(r *http.Response) *Response {
 	return &Response{Response: r}
 }
 
-// Options for listing requests
+// ListOptions represents the options available for making listing requests.
 type ListOptions struct {
 	// Level of detail returned from request
 	// Values: "minimal", "partial", "complete"
@@ -111,9 +113,9 @@ type ListOptions struct {
 	LastUpdatedAt int `url:"lastUpdatedAt,omitempty"`
 }
 
-// Perform a request to the Eloqua API
-// Flexible to allow any use of any endpoint but it only returns a
-// simple respose.
+// RestRequest provides a generic way to make a request to the Eloqua API.
+// It's very general but simple performs much of the boilerplate request actions such
+// as setting the correct api url and adding auth headers.
 func (c *Client) RestRequest(endpoint string, method string, jsonData string) (*Response, error) {
 	url := c.BaseURL + "/api/rest/2.0/" + strings.Trim(endpoint, " /")
 	// fmt.Println(jsonData)
@@ -210,8 +212,6 @@ func (c *Client) requestDecode(endpoint string, method string, v interface{}) (*
 		}
 		postBody = string(jsonString)
 	}
-
-	fmt.Println(postBody)
 
 	resp, err := c.RestRequest(endpoint, strings.ToUpper(method), postBody)
 	defer resp.Body.Close()

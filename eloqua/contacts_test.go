@@ -37,10 +37,10 @@ func TestContactGet(t *testing.T) {
 	defer teardown()
 
 	addRestHandlerFunc("/data/contact/1", func(w http.ResponseWriter, req *http.Request) {
-		testUrlParam(t, req, "depth", "complete")
+		testURLParam(t, req, "depth", "complete")
 		testMethod(t, req, "GET")
-		rJson := `{"type":"Contact", "id": "1", "name":"Test Contact 1"}`
-		fmt.Fprint(w, rJson)
+		rJSON := `{"type":"Contact", "id": "1", "name":"Test Contact 1"}`
+		fmt.Fprint(w, rJSON)
 	})
 
 	contact, _, err := client.Contacts.Get(1)
@@ -59,13 +59,13 @@ func TestContactList(t *testing.T) {
 	reqOpts := &ListOptions{Count: 200, Page: 1}
 
 	addRestHandlerFunc("/data/contacts", func(w http.ResponseWriter, req *http.Request) {
-		testUrlParam(t, req, "depth", "minimal")
-		testUrlParam(t, req, "count", "200")
-		testUrlParam(t, req, "page", "1")
+		testURLParam(t, req, "depth", "minimal")
+		testURLParam(t, req, "count", "200")
+		testURLParam(t, req, "page", "1")
 		testMethod(t, req, "GET")
 
-		rJson := `{"elements":[{"id":"100", "name":"Test contact 100","type": "Contact"}], "page":1,"pageSize":200,"total":2}`
-		fmt.Fprint(w, rJson)
+		rJSON := `{"elements":[{"id":"100", "name":"Test contact 100","type": "Contact"}], "page":1,"pageSize":200,"total":2}`
+		fmt.Fprint(w, rJSON)
 	})
 
 	contacts, resp, err := client.Contacts.List(reqOpts)
