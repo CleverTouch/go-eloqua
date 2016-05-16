@@ -32,10 +32,11 @@ type Client struct {
 	// Basic auth header value
 	authHeader string
 
-	// Various components of the API
-	Emails   *EmailService
-	Users    *UserService
-	Contacts *ContactService
+	// The service endpoints of the API
+	Emails        *EmailService
+	Users         *UserService
+	Contacts      *ContactService
+	ContactFields *ContactFieldService
 }
 
 // NewClient creates a new instance of an Eloqua HTTP client
@@ -58,6 +59,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	c.Emails = &EmailService{client: c}
 	c.Users = &UserService{client: c}
 	c.Contacts = &ContactService{client: c}
+	c.ContactFields = &ContactFieldService{client: c}
 
 	return c
 }
@@ -208,6 +210,8 @@ func (c *Client) requestDecode(endpoint string, method string, v interface{}) (*
 		}
 		postBody = string(jsonString)
 	}
+
+	fmt.Println(postBody)
 
 	resp, err := c.RestRequest(endpoint, strings.ToUpper(method), postBody)
 	defer resp.Body.Close()

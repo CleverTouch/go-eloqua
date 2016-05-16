@@ -15,7 +15,7 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [ ] Accounts
 - [ ] Activities
 - [x] Contacts
-- [ ] Contact fields
+- [x] Contact fields
 - [ ] Contact lists
 - [ ] Contact segments
 - [ ] Content sections
