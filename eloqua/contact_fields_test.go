@@ -98,7 +98,32 @@ func TestContactFieldUpdate(t *testing.T) {
 		fmt.Fprintf(w, `{"assetType":"ContactField","id":"10005","name":"%s","dataType":"text","displayType":"text","updateType":"newNotBlank","isRequired":"true"}`, v.Name)
 	})
 
-	contactField, _, err := client.ContactFields.Update(10005, "Last Name", "text", "text", "newNotBlank", &ContactField{IsRequired: true})
+	contactField, _, err := client.ContactFields.Update(10005, "Last Name", "text", "text", "newNotBlank", input)
+	if err != nil {
+		t.Errorf("ContactFields.Update recieved error: %v", err)
+	}
+
+	input.IsRequired = true
+
+	testModels(t, "ContactFields.Update", contactField, input)
+}
+
+func TestContactFieldUpdateWithoutPassingModel(t *testing.T) {
+	setup()
+	defer teardown()
+
+	input := &ContactField{ID: 10005, Name: "Last Name", DataType: "text", DisplayType: "text", UpdateType: "newNotBlank"}
+
+	addRestHandlerFunc("/assets/contact/field/10005", func(w http.ResponseWriter, req *http.Request) {
+		testMethod(t, req, "PUT")
+		v := new(ContactField)
+		json.NewDecoder(req.Body).Decode(v)
+		testModels(t, "ContactFields.Update body", v, input)
+
+		fmt.Fprintf(w, `{"assetType":"ContactField","id":"10005","name":"%s","dataType":"text","displayType":"text","updateType":"newNotBlank","isRequired":"true"}`, v.Name)
+	})
+
+	contactField, _, err := client.ContactFields.Update(10005, "Last Name", "text", "text", "newNotBlank", nil)
 	if err != nil {
 		t.Errorf("ContactFields.Update recieved error: %v", err)
 	}

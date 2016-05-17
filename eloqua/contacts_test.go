@@ -32,6 +32,33 @@ func TestContactCreate(t *testing.T) {
 	testModels(t, "Contacts.Create", contact, input)
 }
 
+func TestContactCreateWithoutModel(t *testing.T) {
+	setup()
+	defer teardown()
+
+	input := &Contact{EmailAddress: "test@example.com"}
+
+	addRestHandlerFunc("/data/contact", func(w http.ResponseWriter, req *http.Request) {
+		testMethod(t, req, "POST")
+		v := new(Contact)
+		json.NewDecoder(req.Body).Decode(v)
+		testModels(t, "Contact.Create body", v, input)
+
+		fmt.Fprint(w, `{"assetType":"Contact","id":"5","name":"test@example.com","emailAddress":"test@example.com","firstName":"John Smith"}`)
+	})
+
+	contact, _, err := client.Contacts.Create("test@example.com", nil)
+	if err != nil {
+		t.Errorf("Contacts.Create recieved error: %v", err)
+	}
+
+	input.ID = 5
+	input.FirstName = "John Smith"
+	input.Name = "test@example.com"
+
+	testModels(t, "Contacts.Create", contact, input)
+}
+
 func TestContactGet(t *testing.T) {
 	setup()
 	defer teardown()
@@ -88,7 +115,7 @@ func TestContactUpdate(t *testing.T) {
 	setup()
 	defer teardown()
 
-	input := &Contact{Name: "Test Contact 2", ID: 2, IsSubscribed: false}
+	input := &Contact{Name: "test@example.com", ID: 2, IsSubscribed: false}
 
 	addRestHandlerFunc("/data/contact/2", func(w http.ResponseWriter, req *http.Request) {
 		testMethod(t, req, "PUT")
@@ -99,12 +126,39 @@ func TestContactUpdate(t *testing.T) {
 		fmt.Fprintf(w, `{"type":"Contact","id":"2","Name":"%s","isSubscribed":"false"}`, v.Name)
 	})
 
-	contact, _, err := client.Contacts.Update(2, "Test Contact Updated", input)
+	contact, _, err := client.Contacts.Update(2, "test@example.com", input)
 	if err != nil {
 		t.Errorf("Contacts.Update recieved error: %v", err)
 	}
 
 	input.Name = "Test Contact Updated"
+
+	testModels(t, "Contacts.Update", contact, input)
+}
+
+func TestContactUpdateWithoutModel(t *testing.T) {
+	setup()
+	defer teardown()
+
+	input := &Contact{EmailAddress: "test@example.com", ID: 2}
+
+	addRestHandlerFunc("/data/contact/2", func(w http.ResponseWriter, req *http.Request) {
+		testMethod(t, req, "PUT")
+		v := new(Contact)
+		json.NewDecoder(req.Body).Decode(v)
+		testModels(t, "Contacts.Update body", v, input)
+
+		fmt.Fprintf(w, `{"type":"Contact","id":"2","name":"%s","isSubscribed":"false"}`, v.EmailAddress)
+	})
+
+	contact, _, err := client.Contacts.Update(2, "test@example.com", nil)
+	if err != nil {
+		t.Errorf("Contacts.Update recieved error: %v", err)
+	}
+
+	input.Name = "test@example.com"
+	input.IsSubscribed = false
+	input.Type = "Contact"
 
 	testModels(t, "Contacts.Update", contact, input)
 }
