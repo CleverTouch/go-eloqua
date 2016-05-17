@@ -46,7 +46,7 @@ func (e *ContactFieldService) Create(name string, dataType string, displayType s
 	contactField.DataType = dataType
 	contactField.DisplayType = displayType
 	contactField.UpdateType = updateType
-	// Undocumented by seemed to be required during testin
+	// Undocumented by seemed to be required during testing
 	contactField.IsProtected = false
 
 	endpoint := "/assets/contact/field"

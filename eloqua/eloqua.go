@@ -38,6 +38,7 @@ type Client struct {
 	Users         *UserService
 	Contacts      *ContactService
 	ContactFields *ContactFieldService
+	ContactLists  *ContactListService
 }
 
 // NewClient creates a new instance of an Eloqua HTTP client
@@ -61,6 +62,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	c.Users = &UserService{client: c}
 	c.Contacts = &ContactService{client: c}
 	c.ContactFields = &ContactFieldService{client: c}
+	c.ContactLists = &ContactListService{client: c}
 
 	return c
 }
@@ -262,6 +264,39 @@ func (c *Client) deleteRequest(endpoint string, v interface{}) (*Response, error
 	return c.RestRequest(endpoint, "DELETE", postBody)
 }
 
+// errorMessages lists the common meanings for each common HTTP status code.
+// These are taken directly from the Eloqua documentation.
+var errorMessages = map[int]string{
+	301: "Login required",
+	304: "Not Modified",
+	400: "Bad Request",
+	// 400 Alternatives:
+	// There was a missing reference
+	// There was a parsing error
+	// There was a serialization error
+	// There was a validation error
+	401: "You are not authorized to make this request",
+	// 401 Alternatives:
+	// Login required
+	// Unauthorized
+	403: "Forbidden",
+	// 403 Alternatives:
+	// This service has not been enabled for your site
+	// XSRF Protection Failure
+	404: "The requested resource was not found",
+	409: "There was a conflict",
+	412: "The resource you are attempting to delete has dependencies, and cannot be deleted",
+	413: "Storage space exceeded",
+	429: "Too Many Requests",
+	500: "The service has encountered an error",
+	// 500 Alternatives:
+	// Internal Server Error
+	502: "Bad Gateway",
+	503: "Service Unavailable",
+	// 503 Alternatives:
+	// There was a timeout processing the request
+}
+
 // checkResponse checks the Eloqua response for errors
 // and returns them in a descriptive way if possible.
 func checkResponse(r *Response) error {
@@ -274,43 +309,9 @@ func checkResponse(r *Response) error {
 		r.ErrorContent = string(content)
 	}
 
-	switch r.StatusCode {
-	case 301:
-		return errors.New("Login required")
-	case 304:
-		return errors.New("Not Modified")
-	case 400:
-		return errors.New("Bad Request")
-		// return errors.New("There was a missing reference.")
-		// return errors.New("There was a parsing error.")
-		// return errors.New("There was a serialization error.")
-		// return errors.New("There was a validation error")
-	case 401:
-		// return errors.New("Login required")
-		// return errors.New("Unauthorized")
-		return errors.New("You are not authorized to make this request")
-	case 403:
-		return errors.New("Forbidden")
-		// return errors.New("This service has not been enabled for your site.")
-		// return errors.New("XSRF Protection Failure")
-	case 404:
-		return errors.New("The requested resource was not found.")
-	case 409:
-		return errors.New("There was a conflict.")
-	case 412:
-		return errors.New("The resource you are attempting to delete has dependencies, and cannot be deleted")
-	case 413:
-		return errors.New("Storage space exceeded.")
-	case 429:
-		return errors.New("Too Many Requests")
-	case 500:
-		return errors.New("The service has encountered an error.")
-		// return errors.New("Internal Server Error")
-	case 502:
-		return errors.New("Bad Gateway")
-	case 503:
-		return errors.New("Service Unavailable")
-		// return errors.New("There was a timeout processing the request")
+	if message, ok := errorMessages[r.StatusCode]; ok {
+		return errors.New(message)
 	}
+
 	return errors.New("There was an issue performing your request.")
 }

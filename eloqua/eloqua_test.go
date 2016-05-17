@@ -1,6 +1,7 @@
 package eloqua
 
 import (
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -39,9 +40,9 @@ func teardown() {
 
 // testURLParam is a helper to check url parameters are as expected
 func testURLParam(t *testing.T, req *http.Request, name string, expectedVal string) {
-	recievedVal := req.URL.Query().Get(name)
-	if recievedVal != expectedVal {
-		t.Errorf("URL parameter '%s' is %s, expected %s", name, recievedVal, expectedVal)
+	receivedVal := req.URL.Query().Get(name)
+	if receivedVal != expectedVal {
+		t.Errorf("URL parameter '%s' is %s, expected %s", name, receivedVal, expectedVal)
 	}
 }
 
@@ -66,6 +67,32 @@ func TestAuthHeader(t *testing.T) {
 	expectedString := "Basic VGVzdENvbXBhbnlcSm9obi5TbWl0aDpteXNlY3JldA=="
 
 	if client.authHeader != expectedString {
-		t.Errorf("Auth header is not as expected \nExpected: %s \nRecieved: %s", expectedString, client.authHeader)
+		t.Errorf("Auth header is not as expected \nExpected: %s \nReceived: %s", expectedString, client.authHeader)
+	}
+}
+
+func TestEloquaErrorResponse(t *testing.T) {
+	setup()
+	defer teardown()
+
+	responseMessage := "This is a test error message string response"
+
+	addRestHandlerFunc("/assets/contact/lists", func(w http.ResponseWriter, req *http.Request) {
+		w.WriteHeader(401)
+		fmt.Fprint(w, responseMessage)
+	})
+
+	_, resp, err := client.ContactLists.List(nil)
+
+	if resp.StatusCode != 401 {
+		t.Errorf("Wrong response status code, Expected %d, Received %d", 401, resp.StatusCode)
+	}
+
+	if err.Error() != errorMessages[401] {
+		t.Errorf("Wrong error message received, \nExpected: %s\nRecieved: %s", errorMessages[401], err.Error())
+	}
+
+	if resp.ErrorContent != responseMessage {
+		t.Errorf("Failed request content not in request body as expected.\nExpected: %s\nRecieved:%s", responseMessage, resp.ErrorContent)
 	}
 }
