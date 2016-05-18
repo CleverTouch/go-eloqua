@@ -12,7 +12,7 @@ type ContactFieldService struct {
 	client *Client
 }
 
-// ContactField represents an Eloqua email object.
+// ContactField represents an Eloqua contact field object.
 // Fields that are not listed in the ContactField model itself can be retrieved/updated
 // using the 'FieldValues' property.
 type ContactField struct {

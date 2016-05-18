@@ -12,7 +12,7 @@ type ContactListService struct {
 	client *Client
 }
 
-// ContactList represents an Eloqua email object.
+// ContactList represents an Eloqua contact list object.
 // Fields that are not listed in the ContactList model itself can be retrieved/updated
 // using the 'FieldValues' property.
 type ContactList struct {

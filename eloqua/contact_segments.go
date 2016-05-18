@@ -12,7 +12,7 @@ type ContactSegmentService struct {
 	client *Client
 }
 
-// ContactSegment represents an Eloqua email object.
+// ContactSegment represents an Eloqua contact segment object.
 // Segments that are not listed in the ContactSegment model itself can be retrieved/updated
 // using the 'SegmentValues' property.
 type ContactSegment struct {
