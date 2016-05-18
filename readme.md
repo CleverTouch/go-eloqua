@@ -17,7 +17,7 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [x] Contacts
 - [x] Contact fields
 - [x] Contact lists
-- [ ] Contact segments
+- [x] Contact segments
 - [ ] Content sections
 - [ ] Custom objects
 - [ ] Custom object data

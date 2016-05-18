@@ -34,11 +34,12 @@ type Client struct {
 	authHeader string
 
 	// The service endpoints of the API
-	Emails        *EmailService
-	Users         *UserService
-	Contacts      *ContactService
-	ContactFields *ContactFieldService
-	ContactLists  *ContactListService
+	Emails          *EmailService
+	Users           *UserService
+	Contacts        *ContactService
+	ContactFields   *ContactFieldService
+	ContactLists    *ContactListService
+	ContactSegments *ContactSegmentService
 }
 
 // NewClient creates a new instance of an Eloqua HTTP client
@@ -63,6 +64,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	c.Contacts = &ContactService{client: c}
 	c.ContactFields = &ContactFieldService{client: c}
 	c.ContactLists = &ContactListService{client: c}
+	c.ContactSegments = &ContactSegmentService{client: c}
 
 	return c
 }
