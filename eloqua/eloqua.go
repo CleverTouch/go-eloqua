@@ -257,7 +257,7 @@ func (c *Client) putRequestDecode(endpoint string, v interface{}) (*Response, er
 	return c.requestDecode(endpoint, "PUT", v)
 }
 
-// Performs a PUT request and decodes the response into the provided interface
+// Performs a DELETE request to the provided endpoint, sending the provided interface data.
 func (c *Client) deleteRequest(endpoint string, v interface{}) (*Response, error) {
 	postBody := ""
 
@@ -321,5 +321,5 @@ func checkResponse(r *Response) error {
 		return errors.New(message)
 	}
 
-	return errors.New("There was an issue performing your request.")
+	return errors.New("There was an issue performing your request")
 }

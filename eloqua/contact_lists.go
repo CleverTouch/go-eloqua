@@ -26,7 +26,7 @@ type ContactList struct {
 	FolderID     int      `json:"folderId,omitempty,string"`
 	Permissions  []string `json:"permissions,omitempty"`
 	Count        int      `json:"count,omitempty,string"`
-	DataLookupId string   `json:"dataLookupId,omitempty"`
+	DataLookupID string   `json:"dataLookupId,omitempty"`
 	Scope        string   `json:"scope,omitempty"`
 
 	// Used to add contact ID's to to add or delete from a list

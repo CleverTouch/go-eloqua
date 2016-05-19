@@ -71,6 +71,30 @@ func TestAuthHeader(t *testing.T) {
 	}
 }
 
+func TestRequestDecodeJSONErrorHandling(t *testing.T) {
+	setup()
+	defer teardown()
+
+	tMap := make(chan int)
+	_, err := client.requestDecode("/test/endpoint", "POST", tMap)
+
+	if err.Error() != "json: unsupported type: chan int" {
+		t.Error("Delete request with invalid postdata not returning an error as expected")
+	}
+}
+
+func TestDeleteRequestJSONErrorHandling(t *testing.T) {
+	setup()
+	defer teardown()
+
+	tMap := make(chan int)
+	_, err := client.deleteRequest("/test/endpoint", tMap)
+
+	if err.Error() != "json: unsupported type: chan int" {
+		t.Error("Delete request with invalid postdata not returning an error as expected")
+	}
+}
+
 func TestEloquaErrorResponse(t *testing.T) {
 	setup()
 	defer teardown()
@@ -91,6 +115,24 @@ func TestEloquaErrorResponse(t *testing.T) {
 	if err.Error() != errorMessages[401] {
 		t.Errorf("Wrong error message received, \nExpected: %s\nRecieved: %s", errorMessages[401], err.Error())
 	}
+
+	if resp.ErrorContent != responseMessage {
+		t.Errorf("Failed request content not in request body as expected.\nExpected: %s\nRecieved:%s", responseMessage, resp.ErrorContent)
+	}
+}
+
+func TestEloquaDefaultErrorResponse(t *testing.T) {
+	setup()
+	defer teardown()
+
+	responseMessage := "There was an issue performing your request"
+
+	addRestHandlerFunc("/assets/contact/lists", func(w http.ResponseWriter, req *http.Request) {
+		w.WriteHeader(608)
+		fmt.Fprint(w, responseMessage)
+	})
+
+	_, resp, _ := client.ContactLists.List(nil)
 
 	if resp.ErrorContent != responseMessage {
 		t.Errorf("Failed request content not in request body as expected.\nExpected: %s\nRecieved:%s", responseMessage, resp.ErrorContent)

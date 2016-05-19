@@ -25,7 +25,7 @@ type ContactSegment struct {
 
 	Name        string   `json:"name,omitempty"`
 	Description string   `json:"description,omitempty"`
-	FolderId    int      `json:"folderId,omitempty,string"`
+	FolderID    int      `json:"folderId,omitempty,string"`
 	UpdatedAt   int      `json:"updatedAt,omitempty,string"`
 	UpdatedBy   int      `json:"updatedBy,omitempty,string"`
 	Permissions []string `json:"permissions,omitempty"`

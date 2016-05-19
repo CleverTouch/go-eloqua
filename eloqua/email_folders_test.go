@@ -47,7 +47,7 @@ func TestEmailFolderGet(t *testing.T) {
 		t.Errorf("EmailFolders.Get recieved error: %v", err)
 	}
 
-	output := &EmailFolder{ID: 10005, Name: "A Test Folder", FolderId: 101}
+	output := &EmailFolder{ID: 10005, Name: "A Test Folder", FolderID: 101}
 	testModels(t, "EmailFolders.Get", emailFolder, output)
 }
 
