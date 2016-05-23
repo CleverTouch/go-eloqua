@@ -13,8 +13,6 @@ type ContactListService struct {
 }
 
 // ContactList represents an Eloqua contact list object.
-// Fields that are not listed in the ContactList model itself can be retrieved/updated
-// using the 'FieldValues' property.
 type ContactList struct {
 	Type         string   `json:"type,omitempty"`
 	ID           int      `json:"id,omitempty,string"`
@@ -36,7 +34,6 @@ type ContactList struct {
 }
 
 // Create a new contact list in eloqua
-// The email must not already exists otherwise Eloqua will return an error.
 func (e *ContactListService) Create(name string, contactList *ContactList) (*ContactList, *Response, error) {
 	if contactList == nil {
 		contactList = &ContactList{}

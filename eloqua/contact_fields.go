@@ -36,7 +36,6 @@ type ContactField struct {
 }
 
 // Create a new contact field in eloqua
-// The email must not already exists otherwise Eloqua will return an error.
 func (e *ContactFieldService) Create(name string, dataType string, displayType string, updateType string, contactField *ContactField) (*ContactField, *Response, error) {
 	if contactField == nil {
 		contactField = &ContactField{}

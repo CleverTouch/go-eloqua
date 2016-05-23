@@ -18,12 +18,12 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [x] Contact fields
 - [x] Contact lists
 - [x] Contact segments
-- [ ] Content sections
+- [x] Content sections - *Mostly done, Related objects to be added*
 - [ ] Custom objects
 - [ ] Custom object data
 - [x] Emails - *Mostly done, Related objects to be added*
 - [x] Email folders
-- [ ] Email groups
+- [x] Email groups
 - [ ] Email headers
 - [ ] Forms
 - [ ] Form data

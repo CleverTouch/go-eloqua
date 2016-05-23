@@ -13,8 +13,6 @@ type ContactSegmentService struct {
 }
 
 // ContactSegment represents an Eloqua contact segment object.
-// Segments that are not listed in the ContactSegment model itself can be retrieved/updated
-// using the 'SegmentValues' property.
 type ContactSegment struct {
 	Type          string `json:"type,omitempty"`
 	CurrentStatus string `json:"currentStatus,omitempty"`
@@ -35,7 +33,6 @@ type ContactSegment struct {
 }
 
 // Create a new contact segment in eloqua
-// The email must not already exists otherwise Eloqua will return an error.
 func (e *ContactSegmentService) Create(name string, contactSegment *ContactSegment) (*ContactSegment, *Response, error) {
 	if contactSegment == nil {
 		contactSegment = &ContactSegment{}

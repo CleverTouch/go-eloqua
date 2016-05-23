@@ -13,8 +13,6 @@ type EmailFolderService struct {
 }
 
 // EmailFolder represents an Eloqua email folder object.
-// Segments that are not listed in the EmailFolder model itself can be retrieved/updated
-// using the 'SegmentValues' property.
 type EmailFolder struct {
 	Type         string `json:"type,omitempty"`
 	ID           int    `json:"id,omitempty,string"`
@@ -31,7 +29,6 @@ type EmailFolder struct {
 }
 
 // Create a new email folder in eloqua
-// The email must not already exists otherwise Eloqua will return an error.
 func (e *EmailFolderService) Create(name string, emailFolder *EmailFolder) (*EmailFolder, *Response, error) {
 	if emailFolder == nil {
 		emailFolder = &EmailFolder{}
