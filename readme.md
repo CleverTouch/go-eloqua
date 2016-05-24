@@ -19,8 +19,6 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [x] Contact lists
 - [x] Contact segments
 - [x] Content sections - *Mostly done, Related objects to be added*
-- [ ] Custom objects
-- [ ] Custom object data
 - [x] Emails - *Mostly done, Related objects to be added*
 - [x] Email folders
 - [x] Email groups
@@ -33,7 +31,7 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [ ] Option lists
 - [x] Users - *Mostly done, Related objects to be added*
 - [ ] Campaigns
-- [ ] Custom objects
+- [x] Custom objects
 - [ ] Custom object data
 - [ ] External activities
 - [ ] External assets

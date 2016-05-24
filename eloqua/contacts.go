@@ -45,13 +45,6 @@ type Contact struct {
 	FieldValues      []FieldValue `json:"fieldValues,imitempty"`
 }
 
-// A FieldValue represents an Eloqua field values objects
-type FieldValue struct {
-	Type  string `json:"type,omitempty"`
-	ID    int    `json:"id,omitempty,string"`
-	Value string `json:"value,omitempty"`
-}
-
 // Create a new contact in eloqua
 // The email must not already exists otherwise Eloqua will return an error.
 func (e *ContactService) Create(emailAddress string, contact *Contact) (*Contact, *Response, error) {

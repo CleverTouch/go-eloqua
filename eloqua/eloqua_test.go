@@ -83,6 +83,18 @@ func TestRequestDecodeJSONErrorHandling(t *testing.T) {
 	}
 }
 
+func TestDeleteRequestErrorHandling(t *testing.T) {
+	setup()
+	defer teardown()
+
+	user := User{Name: "Test User"}
+	_, err := client.deleteRequest("/test/endpoint", user)
+
+	if err == nil {
+		t.Error("Request did not return an error but a 404 was expected")
+	}
+}
+
 func TestDeleteRequestJSONErrorHandling(t *testing.T) {
 	setup()
 	defer teardown()

@@ -40,6 +40,7 @@ type Client struct {
 	ContactSegments *ContactSegmentService
 
 	ContentSections *ContentSectionService
+	CustomObjects   *CustomObjectService
 
 	Emails       *EmailService
 	EmailFolders *EmailFolderService
@@ -71,6 +72,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	c.ContactSegments = &ContactSegmentService{client: c}
 
 	c.ContentSections = &ContentSectionService{client: c}
+	c.CustomObjects = &CustomObjectService{client: c}
 
 	c.Emails = &EmailService{client: c}
 	c.EmailFolders = &EmailFolderService{client: c}
@@ -275,7 +277,10 @@ func (c *Client) deleteRequest(endpoint string, v interface{}) (*Response, error
 		postBody = string(jsonString)
 	}
 
-	return c.RestRequest(endpoint, "DELETE", postBody)
+	resp, err := c.RestRequest(endpoint, "DELETE", postBody)
+	err = checkResponse(resp)
+
+	return resp, err
 }
 
 // errorMessages lists the common meanings for each common HTTP status code.
@@ -328,4 +333,11 @@ func checkResponse(r *Response) error {
 	}
 
 	return errors.New("There was an issue performing your request")
+}
+
+// A FieldValue represents an Eloqua field values objects
+type FieldValue struct {
+	Type  string `json:"type,omitempty"`
+	ID    int    `json:"id,omitempty,string"`
+	Value string `json:"value,omitempty"`
 }
