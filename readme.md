@@ -32,7 +32,7 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [x] Users - *Mostly done, Related objects to be added*
 - [ ] Campaigns
 - [x] Custom objects
-- [ ] Custom object data
+- [x] Custom object data
 - [ ] External activities
 - [ ] External assets
 - [ ] External asset types

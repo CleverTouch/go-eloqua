@@ -39,8 +39,9 @@ type Client struct {
 	ContactLists    *ContactListService
 	ContactSegments *ContactSegmentService
 
-	ContentSections *ContentSectionService
-	CustomObjects   *CustomObjectService
+	ContentSections  *ContentSectionService
+	CustomObjects    *CustomObjectService
+	CustomObjectData *CustomObjectDataService
 
 	Emails       *EmailService
 	EmailFolders *EmailFolderService
@@ -73,6 +74,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 
 	c.ContentSections = &ContentSectionService{client: c}
 	c.CustomObjects = &CustomObjectService{client: c}
+	c.CustomObjectData = &CustomObjectDataService{client: c}
 
 	c.Emails = &EmailService{client: c}
 	c.EmailFolders = &EmailFolderService{client: c}
