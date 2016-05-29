@@ -16,15 +16,15 @@ type CustomObjectService struct {
 // These fields are taken from an API response since the Eloqua documentation
 // ,at the time of building, did not appear to be correct.
 type CustomObject struct {
-	Type         string `json:"type,omitempty"`
-	ID           int    `json:"id,omitempty,string"`
-	CreatedAt    int    `json:"createdAt,omitempty,string"`
-	CreatedBy    int    `json:"createdBy,omitempty,string"`
-	RequestDepth string `json:"depth,omitempty"`
-	Name         string `json:"name,omitempty"`
-	Description  string `json:"description,omitempty"`
-	UpdatedAt    int    `json:"updatedAt,omitempty,string"`
-	UpdatedBy    int    `json:"updatedBy,omitempty,string"`
+	Type        string `json:"type,omitempty"`
+	ID          int    `json:"id,omitempty,string"`
+	CreatedAt   int    `json:"createdAt,omitempty,string"`
+	CreatedBy   int    `json:"createdBy,omitempty,string"`
+	Depth       string `json:"depth,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Description string `json:"description,omitempty"`
+	UpdatedAt   int    `json:"updatedAt,omitempty,string"`
+	UpdatedBy   int    `json:"updatedBy,omitempty,string"`
 
 	DisplayNameFieldID string              `json:"displayNameFieldId,omitempty"`
 	ContentText        string              `json:"contentText,omitempty"`
@@ -36,7 +36,7 @@ type CustomObject struct {
 type CustomObjectField struct {
 	Type         string `json:"type,omitempty"`
 	ID           int    `json:"id,omitempty,string"`
-	RequestDepth string `json:"depth,omitempty"`
+	Depth        string `json:"depth,omitempty"`
 	Name         string `json:"name,omitempty"`
 	DataType     string `json:"dataType,omitempty"`
 	DefaultValue string `json:"defaultValue,omitempty"`

@@ -20,7 +20,7 @@ type Contact struct {
 	CurrentStatus string `json:"currentStatus,omitempty"`
 	ID            int    `json:"id,omitempty,string"`
 	CreatedAt     int    `json:"createdAt,omitempty,string"`
-	RequestDepth  string `json:"depth,omitempty"`
+	Depth         string `json:"depth,omitempty"`
 	// This actually relates to the contact's email address
 	// rather than the contacts name
 	Name          string `json:"name,omitempty"`

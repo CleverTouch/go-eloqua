@@ -21,7 +21,7 @@ type User struct {
 	CreatedAt            int      `json:"createdAt,omitempty,string"`
 	CreatedBy            int      `json:"createdBy,omitempty,string"`
 	Description          string   `json:"description,omitempty`
-	RequestDepth         string   `json:"depth,omitempty"`
+	Depth                string   `json:"depth,omitempty"`
 	FolderID             int      `json:"folderId,omitempty,string"`
 	Name                 string   `json:"name,omitempty"`
 	Permissions          []string `json:"permissions,omitempty"`

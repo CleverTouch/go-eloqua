@@ -19,7 +19,7 @@ func TestEmailCreate(t *testing.T) {
 		json.NewDecoder(req.Body).Decode(v)
 		testModels(t, "Email.Create body", v, input)
 
-		fmt.Fprint(w, `{"assetType":"Email","id":"2","Name":"Test Email 2","subject":"A test email"}`)
+		fmt.Fprint(w, `{"type":"Email","id":"2","Name":"Test Email 2","subject":"A test email"}`)
 	})
 
 	email, _, err := client.Emails.Create("Test Email 2", input)
@@ -43,7 +43,7 @@ func TestEmailCreateWithoutPassingEmail(t *testing.T) {
 		expected := &Email{Name: "Test Email 2"}
 		testModels(t, "Email.Create body (without model)", v, expected)
 
-		fmt.Fprint(w, `{"assetType":"Email","id":"2","Name":"Test Email 2","subject":"A test email"}`)
+		fmt.Fprint(w, `{"type":"Email","id":"2","Name":"Test Email 2","subject":"A test email"}`)
 	})
 
 	email, _, err := client.Emails.Create("Test Email 2", nil)
@@ -51,7 +51,7 @@ func TestEmailCreateWithoutPassingEmail(t *testing.T) {
 		t.Errorf("Emails.Create recieved error: %v", err)
 	}
 
-	expectedResult := &Email{AssetType: "Email", ID: 2, Name: "Test Email 2", Subject: "A test email"}
+	expectedResult := &Email{Type: "Email", ID: 2, Name: "Test Email 2", Subject: "A test email"}
 	testModels(t, "Emails.Create (without model)", email, expectedResult)
 }
 
@@ -62,7 +62,7 @@ func TestEmailGet(t *testing.T) {
 	addRestHandlerFunc("/assets/email/1", func(w http.ResponseWriter, req *http.Request) {
 		testURLParam(t, req, "depth", "complete")
 		testMethod(t, req, "GET")
-		rJSON := `{"assetType":"Email", "id": "1", "name":"Test Email 1"}`
+		rJSON := `{"type":"Email", "id": "1", "name":"Test Email 1"}`
 		fmt.Fprint(w, rJSON)
 	})
 
@@ -71,7 +71,7 @@ func TestEmailGet(t *testing.T) {
 		t.Errorf("Emails.Get recieved error: %v", err)
 	}
 
-	want := &Email{ID: 1, Name: "Test Email 1", AssetType: "Email"}
+	want := &Email{ID: 1, Name: "Test Email 1", Type: "Email"}
 	testModels(t, "Emails.Get", email, want)
 }
 
@@ -87,7 +87,7 @@ func TestEmailList(t *testing.T) {
 		testURLParam(t, req, "page", "1")
 		testMethod(t, req, "GET")
 
-		rJSON := `{"elements":[{"id":"100", "name":"Test email 100","assetType": "Email"}], "page":1,"pageSize":200,"total":2}`
+		rJSON := `{"elements":[{"id":"100", "name":"Test email 100","type": "Email"}], "page":1,"pageSize":200,"total":2}`
 		fmt.Fprint(w, rJSON)
 	})
 
@@ -96,7 +96,7 @@ func TestEmailList(t *testing.T) {
 		t.Errorf("Emails.List recieved error: %v", err)
 	}
 
-	want := []Email{{ID: 100, Name: "Test email 100", AssetType: "Email"}}
+	want := []Email{{ID: 100, Name: "Test email 100", Type: "Email"}}
 	testModels(t, "Emails.List", emails, want)
 
 	if resp.PageSize != reqOpts.Count {
@@ -119,7 +119,7 @@ func TestEmailUpdate(t *testing.T) {
 		json.NewDecoder(req.Body).Decode(v)
 		testModels(t, "Emails.Update body", v, input)
 
-		fmt.Fprintf(w, `{"assetType":"Email","id":"2","Name":"%s","subject":"A test email"}`, v.Name)
+		fmt.Fprintf(w, `{"type":"Email","id":"2","Name":"%s","subject":"A test email"}`, v.Name)
 	})
 
 	email, _, err := client.Emails.Update(2, "Test Email Updated", input)
@@ -142,7 +142,7 @@ func TestUserUpdateWithoutPassingEmail(t *testing.T) {
 		json.NewDecoder(req.Body).Decode(v)
 		expectedData := &Email{ID: 8, Name: "Test Email Updated"}
 		testModels(t, "Emails.Update body (without model)", v, expectedData)
-		fmt.Fprintf(w, `{"assetType":"Email","id":"8","Name":"%s","htmlContent":{"type": "RawHtmlContent","html":"Hello"}}`, v.Name)
+		fmt.Fprintf(w, `{"type":"Email","id":"8","Name":"%s","htmlContent":{"type": "RawHtmlContent","html":"Hello"}}`, v.Name)
 	})
 
 	email, _, err := client.Emails.Update(8, "Test Email Updated", nil)
@@ -150,7 +150,7 @@ func TestUserUpdateWithoutPassingEmail(t *testing.T) {
 		t.Errorf("Emails.Update recieved error: %v", err)
 	}
 
-	resultModel := &Email{AssetType: "Email", Name: "Test Email Updated",
+	resultModel := &Email{Type: "Email", Name: "Test Email Updated",
 		ID: 8, HTMLContent: HTMLContent{ContentType: "RawHtmlContent", HTML: "Hello"}}
 	testModels(t, "Emails.Update (without model)", email, resultModel)
 }

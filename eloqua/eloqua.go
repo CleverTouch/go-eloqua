@@ -49,6 +49,7 @@ type Client struct {
 	EmailGroups  *EmailGroupService
 	EmailHeaders *EmailHeaderService
 	EmailFooters *EmailFooterService
+	Forms        *FormService
 
 	Users *UserService
 }
@@ -85,6 +86,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	c.EmailGroups = &EmailGroupService{client: c}
 	c.EmailHeaders = &EmailHeaderService{client: c}
 	c.EmailFooters = &EmailFooterService{client: c}
+	c.Forms = &FormService{client: c}
 
 	c.Users = &UserService{client: c}
 
@@ -366,7 +368,7 @@ type Hyperlink struct {
 type FieldMerge struct {
 	Type           string `json:"type,omitempty"`
 	ID             int    `json:"id,omitempty,string"`
-	RequestDepth   string `json:"depth,omitempty"`
+	Depth          string `json:"depth,omitempty"`
 	Name           string `json:"name,omitempty"`
 	FolderID       int    `json:"folderId,omitempty,string"`
 	Syntax         string `json:"syntax,omitempty"`
@@ -382,7 +384,7 @@ type FieldMerge struct {
 type Image struct {
 	Type         string   `json:"type,omitempty"`
 	ID           int      `json:"id,omitempty,string"`
-	RequestDepth string   `json:"depth,omitempty"`
+	Depth        string   `json:"depth,omitempty"`
 	Name         string   `json:"name,omitempty"`
 	FolderID     int      `json:"folderId,omitempty,string"`
 	CreatedAt    int      `json:"createdAt,omitempty,string"`
@@ -401,4 +403,11 @@ type Size struct {
 	Type   string `json:"type,omitempty"`
 	Width  int    `json:"width,omitempty,string"`
 	Height int    `json:"height,omitempty,string"`
+}
+
+// TypeObject is a very simple model of an eloqua object containing
+// only the 'type' field. This is used in cases where there are no extra field,
+// Just a type available.
+type TypeObject struct {
+	Type string `json:"type,omitempty"`
 }

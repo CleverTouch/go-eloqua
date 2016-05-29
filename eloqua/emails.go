@@ -14,12 +14,12 @@ type EmailService struct {
 
 // Email represents an Eloqua email object.
 type Email struct {
-	AssetType       string   `json:"assetType,omitempty"`
+	Type            string   `json:"type,omitempty"`
 	CurrentStatus   string   `json:"currentStatus,omitempty"`
 	ID              int      `json:"id,omitempty,string"`
 	CreatedAt       int      `json:"createdAt,omitempty,string"`
 	CreatedBy       int      `json:"createdBy,omitempty,string"`
-	RequestDepth    string   `json:"depth,omitempty"`
+	Depth           string   `json:"depth,omitempty"`
 	FolderID        int      `json:"folderId,omitempty,string"`
 	Name            string   `json:"name,omitempty"`
 	Permissions     []string `json:"permissions,omitempty"`

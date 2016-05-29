@@ -21,7 +21,7 @@ type Account struct {
 	ID            int    `json:"id,omitempty,string"`
 	CreatedAt     int    `json:"createdAt,omitempty,string"`
 	CreatedBy     int    `json:"createdBy,omitempty,string"`
-	RequestDepth  string `json:"depth,omitempty"`
+	Depth         string `json:"depth,omitempty"`
 	UpdatedAt     int    `json:"updatedAt,omitempty,string"`
 	UpdatedBy     int    `json:"updatedBy,omitempty,string"`
 

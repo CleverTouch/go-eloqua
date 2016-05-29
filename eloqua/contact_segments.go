@@ -19,7 +19,7 @@ type ContactSegment struct {
 	ID            int    `json:"id,omitempty,string"`
 	CreatedAt     int    `json:"createdAt,omitempty,string"`
 	CreatedBy     int    `json:"createdBy,omitempty,string"`
-	RequestDepth  string `json:"depth,omitempty"`
+	Depth         string `json:"depth,omitempty"`
 
 	Name        string   `json:"name,omitempty"`
 	Description string   `json:"description,omitempty"`

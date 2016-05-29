@@ -17,7 +17,7 @@ type ContactList struct {
 	Type         string   `json:"type,omitempty"`
 	ID           int      `json:"id,omitempty,string"`
 	CreatedAt    int      `json:"createdAt,omitempty,string"`
-	RequestDepth string   `json:"depth,omitempty"`
+	Depth        string   `json:"depth,omitempty"`
 	Name         string   `json:"name,omitempty"`
 	Description  string   `json:"description,omitempty"`
 	UpdatedAt    int      `json:"updatedAt,omitempty,string"`

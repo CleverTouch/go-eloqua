@@ -16,12 +16,12 @@ type ContactFieldService struct {
 // Fields that are not listed in the ContactField model itself can be retrieved/updated
 // using the 'FieldValues' property.
 type ContactField struct {
-	Type         string `json:"type,omitempty"`
-	ID           int    `json:"id,omitempty,string"`
-	CreatedAt    int    `json:"createdAt,omitempty,string"`
-	RequestDepth string `json:"depth,omitempty"`
-	Name         string `json:"name,omitempty"`
-	UpdatedAt    int    `json:"updatedAt,omitempty,string"`
+	Type      string `json:"type,omitempty"`
+	ID        int    `json:"id,omitempty,string"`
+	CreatedAt int    `json:"createdAt,omitempty,string"`
+	Depth     string `json:"depth,omitempty"`
+	Name      string `json:"name,omitempty"`
+	UpdatedAt int    `json:"updatedAt,omitempty,string"`
 
 	DataType     string `json:"dataType,omitempty"`
 	DisplayType  string `json:"displayType,omitempty"`

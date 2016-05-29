@@ -14,10 +14,10 @@ type EmailFolderService struct {
 
 // EmailFolder represents an Eloqua email folder object.
 type EmailFolder struct {
-	Type         string `json:"type,omitempty"`
-	ID           int    `json:"id,omitempty,string"`
-	CreatedAt    int    `json:"createdAt,omitempty,string"`
-	RequestDepth string `json:"depth,omitempty"`
+	Type      string `json:"type,omitempty"`
+	ID        int    `json:"id,omitempty,string"`
+	CreatedAt int    `json:"createdAt,omitempty,string"`
+	Depth     string `json:"depth,omitempty"`
 
 	Name        string `json:"name,omitempty"`
 	Description string `json:"description,omitempty"`

@@ -14,11 +14,11 @@ type EmailHeaderService struct {
 
 // EmailHeader represents an Eloqua email header object.
 type EmailHeader struct {
-	Type         string `json:"type,omitempty"`
-	ID           int    `json:"id,omitempty,string"`
-	CreatedAt    int    `json:"createdAt,omitempty,string"`
-	CreatedBy    int    `json:"createdBy,omitempty,string"`
-	RequestDepth string `json:"depth,omitempty"`
+	Type      string `json:"type,omitempty"`
+	ID        int    `json:"id,omitempty,string"`
+	CreatedAt int    `json:"createdAt,omitempty,string"`
+	CreatedBy int    `json:"createdBy,omitempty,string"`
+	Depth     string `json:"depth,omitempty"`
 
 	Name        string   `json:"name,omitempty"`
 	Description string   `json:"description,omitempty"`
