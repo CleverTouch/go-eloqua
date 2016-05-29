@@ -32,10 +32,10 @@ type EmailGroup struct {
 	IsVisibleInPublicSubscriptionList bool   `json:"isVisibleInPublicSubscriptionList,omitempty,string"`
 	SubscriptionListDataLookupID      string `json:"subscriptionListDataLookupId,omitempty"`
 	SubscriptionListID                int    `json:"subscriptionListId,omitempty,string"`
-	SubscriptionLandingPageId         int    `json:"subscriptionLandingPageId,omitempty,string"`
-	UnSubscriptionListDataLookupId    string `json:"unSubscriptionListDataLookupId,omitempty"`
-	UnSubscriptionListId              int    `json:"unSubscriptionListId,omitempty,string"`
-	UnsubscriptionLandingPageId       int    `json:"unsubscriptionLandingPageId,omitempty,string"`
+	SubscriptionLandingPageID         int    `json:"subscriptionLandingPageId,omitempty,string"`
+	UnSubscriptionListDataLookupID    string `json:"unSubscriptionListDataLookupId,omitempty"`
+	UnSubscriptionListID              int    `json:"unSubscriptionListId,omitempty,string"`
+	UnsubscriptionLandingPageID       int    `json:"unsubscriptionLandingPageId,omitempty,string"`
 }
 
 // Create a new email group in eloqua
