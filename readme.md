@@ -25,7 +25,7 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [x] Email headers
 - [x] Email footers
 - [x] Forms
-- [ ] Form data
+- [x] Form data
 - [ ] Images
 - [ ] Landing pages
 - [ ] Microsites
