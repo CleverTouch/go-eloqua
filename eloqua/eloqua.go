@@ -155,17 +155,15 @@ func (c *Client) RestRequest(endpoint string, method string, jsonData string) (*
 	req.Header.Add("Content-Type", "application/json")
 
 	resp, err := c.client.Do(req)
-	if err != nil {
-		return nil, err
-	}
-
-	return newResponse(resp), nil
+	return newResponse(resp), err
 }
 
 // Performs a GET request and decodes the response into the provided interface
 func (c *Client) getRequestDecode(endpoint string, v interface{}) (*Response, error) {
 	resp, err := c.RestRequest(endpoint, "GET", "")
-	defer resp.Body.Close()
+	if resp != nil {
+		defer resp.Body.Close()
+	}
 	if err != nil {
 		return resp, err
 	}
@@ -202,7 +200,10 @@ func (c *Client) getRequestListDecode(endpoint string, v interface{}, opts *List
 
 	resp, err := c.RestRequest(endpoint, "GET", "")
 
-	defer resp.Body.Close()
+	if resp != nil {
+		defer resp.Body.Close()
+	}
+
 	if err != nil {
 		return resp, err
 	}
@@ -240,7 +241,10 @@ func (c *Client) requestDecode(endpoint string, method string, v interface{}) (*
 	}
 
 	resp, err := c.RestRequest(endpoint, strings.ToUpper(method), postBody)
-	defer resp.Body.Close()
+	if resp != nil {
+		defer resp.Body.Close()
+	}
+
 	if err != nil {
 		return resp, err
 	}

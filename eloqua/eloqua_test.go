@@ -83,13 +83,69 @@ func TestRestRequestErrorHandling(t *testing.T) {
 	if resp != nil {
 		t.Error("Response expected to be nil due to early errors but is not")
 	}
+}
 
-	resp, err = client.RestRequest("/test/endpoint", "GET", "")
-	if err != nil {
-		t.Error("HTTP error expected but no error was returned")
+func TestGetRequestDecodeErrorHandling(t *testing.T) {
+	setup()
+	defer teardown()
+	_, err := client.getRequestDecode("/%2///F a", nil)
+
+	if err == nil {
+		t.Error("Request expected to return error due to bad url format")
 	}
-	if resp == nil {
-		t.Error("Response expected from failed request but was found as nil")
+
+	_, err = client.getRequestDecode("/a/non-existing/endpoint", nil)
+	if err == nil {
+		t.Error("Request expected to return error due to 404 response")
+	}
+
+	addRestHandlerFunc("/assets/contact/lists", func(w http.ResponseWriter, req *http.Request) {
+		w.WriteHeader(200)
+		fmt.Fprint(w, `{"test": "json"}  \n\n`)
+	})
+	testModel := &ContactList{}
+	_, err = client.getRequestDecode("/assets/contact/lists", testModel)
+
+	if err != nil {
+		t.Error("EOF in json response should not return an error but it has")
+		t.Log(err)
+	}
+}
+
+func TestGetRequestListDecodeErrorHandling(t *testing.T) {
+	setup()
+	defer teardown()
+	_, err := client.getRequestListDecode("/%2///F a", nil, nil)
+
+	if err == nil {
+		t.Error("Request expected to return error due to bad url format")
+	}
+}
+
+func TestRequestDecodeErrorHandling(t *testing.T) {
+	setup()
+	defer teardown()
+	_, err := client.requestDecode("/%2///F a", "GET", nil)
+
+	if err == nil {
+		t.Error("Request expected to return error due to bad url format")
+	}
+
+	_, err = client.requestDecode("/a/non-existing/endpoint", "GET", nil)
+	if err == nil {
+		t.Error("Request expected to return error due to 404 response")
+	}
+
+	addRestHandlerFunc("/assets/contact/lists", func(w http.ResponseWriter, req *http.Request) {
+		w.WriteHeader(200)
+		fmt.Fprint(w, `{"test": "json"}  \n\n`)
+	})
+	testModel := &ContactList{}
+	_, err = client.requestDecode("/assets/contact/lists", "GET", testModel)
+
+	if err != nil {
+		t.Error("EOF in json response should not return an error but it has")
+		t.Log(err)
 	}
 }
 
@@ -101,7 +157,7 @@ func TestRequestDecodeJSONErrorHandling(t *testing.T) {
 	_, err := client.requestDecode("/test/endpoint", "POST", tMap)
 
 	if err.Error() != "json: unsupported type: chan int" {
-		t.Error("Delete request with invalid postdata not returning an error as expected")
+		t.Error("POST request with invalid postdata not returning an error as expected")
 	}
 }
 
