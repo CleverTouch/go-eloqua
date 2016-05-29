@@ -75,7 +75,7 @@ func TestRestRequestErrorHandling(t *testing.T) {
 	setup()
 	defer teardown()
 
-	resp, err := client.RestRequest("", "C/A/T", "")
+	resp, err := client.RestRequest("/%2///F a", "GET", "")
 
 	if err == nil {
 		t.Error("Invalid HTTP request error expected but no error was returned")
