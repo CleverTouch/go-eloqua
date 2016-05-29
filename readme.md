@@ -24,7 +24,7 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [x] Email groups
 - [x] Email headers
 - [x] Email footers
-- [ ] Forms
+- [x] Forms
 - [ ] Form data
 - [ ] Images
 - [ ] Landing pages
