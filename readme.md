@@ -22,7 +22,7 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [x] Emails - *Mostly done, Related objects to be added*
 - [x] Email folders
 - [x] Email groups
-- [ ] Email headers
+- [x] Email headers
 - [ ] Email footers
 - [ ] Forms
 - [ ] Form data

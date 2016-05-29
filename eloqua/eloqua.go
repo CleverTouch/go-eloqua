@@ -47,6 +47,7 @@ type Client struct {
 	Emails       *EmailService
 	EmailFolders *EmailFolderService
 	EmailGroups  *EmailGroupService
+	EmailHeaders *EmailHeaderService
 
 	Users *UserService
 }
@@ -81,6 +82,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	c.Emails = &EmailService{client: c}
 	c.EmailFolders = &EmailFolderService{client: c}
 	c.EmailGroups = &EmailGroupService{client: c}
+	c.EmailHeaders = &EmailHeaderService{client: c}
 
 	c.Users = &UserService{client: c}
 
@@ -339,9 +341,61 @@ func checkResponse(r *Response) error {
 	return errors.New("There was an issue performing your request")
 }
 
-// A FieldValue represents an Eloqua field values objects
+// FieldValue represents the structure in which custom field values are passed
+// via the API.
 type FieldValue struct {
 	Type  string `json:"type,omitempty"`
 	ID    int    `json:"id,omitempty,string"`
 	Value string `json:"value,omitempty"`
+}
+
+// Hyperlink is an Eloqua hyperlink object that is commonly
+// contained in Eloqua assets such as emails and landing pages.
+type Hyperlink struct {
+	Type string `json:"type,omitempty"`
+	ID   int    `json:"id,omitempty,string"`
+	Name string `json:"name,omitempty"`
+	Href string `json:"href,omitempty"`
+}
+
+// FieldMerge is an Eloqua FieldMerge Object.
+// The fields available depend on the merge source (or type).
+type FieldMerge struct {
+	Type           string `json:"type,omitempty"`
+	ID             int    `json:"id,omitempty,string"`
+	RequestDepth   string `json:"depth,omitempty"`
+	Name           string `json:"name,omitempty"`
+	FolderID       int    `json:"folderId,omitempty,string"`
+	Syntax         string `json:"syntax,omitempty"`
+	UpdatedAt      int    `json:"updatedAt,omitempty,string"`
+	UpdatedBy      int    `json:"updatedBy,omitempty,string"`
+	ContactFieldID int    `json:"contactFieldId,omitempty,string"`
+	DefaultValue   string `json:"defaultValue,omitempty"`
+	MergeType      string `json:"mergeType,omitempty"`
+}
+
+// Image represents an Eloqua ImageFile object.
+// It's commonly found in assets such as emails and landing pages.
+type Image struct {
+	Type         string   `json:"type,omitempty"`
+	ID           int      `json:"id,omitempty,string"`
+	RequestDepth string   `json:"depth,omitempty"`
+	Name         string   `json:"name,omitempty"`
+	FolderID     int      `json:"folderId,omitempty,string"`
+	CreatedAt    int      `json:"createdAt,omitempty,string"`
+	CreatedBy    int      `json:"createdBy,omitempty,string"`
+	UpdatedAt    int      `json:"updatedAt,omitempty,string"`
+	UpdatedBy    int      `json:"updatedBy,omitempty,string"`
+	Permissions  []string `json:"permissions,omitempty"`
+	FullImageUrl string   `json:"fullImageUrl,omitempty"`
+	Size         Size     `json:"size,omitempty"`
+	ThumbnailUrl string   `json:"thumbnailUrl,omitempty"`
+}
+
+// Size is a universal Eloqua object to simply track width & height
+// of other assets such as images.
+type Size struct {
+	Type   string `json:"type,omitempty"`
+	Width  int    `json:"width,omitempty,string"`
+	Height int    `json:"height,omitempty,string"`
 }

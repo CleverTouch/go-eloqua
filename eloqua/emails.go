@@ -32,11 +32,12 @@ type Email struct {
 	EmailHeaderID int `json:"emailHeaderId,omitempty,string"`
 	EmailGroupID  int `json:"emailGroupId,omitempty,string"`
 	EncodingID    int `json:"encodingId,omitempty,string"`
-	// TODO - fieldMerges
 	// TODO - forms
-	HTMLContent HTMLContent `json:"htmlContent,omitempty"`
-	// TODO - hyperlinks
-	// TODO - images
+	FieldMerges []FieldMerge `json:"hyperlinks,fieldMerges"`
+	HTMLContent HTMLContent  `json:"htmlContent,omitempty"`
+	Hyperlinks  []Hyperlink  `json:"hyperlinks,omitempty"`
+	Images      []Image      `json:"images,omitempty"`
+
 	PlainTextEditable bool   `json:"isPlainTextEditable,omitempty",string`
 	Tracked           bool   `json:"isTracked,omitempty,string"`
 	Subject           string `json:"subject,omitempty"`
