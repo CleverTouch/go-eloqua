@@ -254,9 +254,6 @@ func (c *Client) requestDecode(endpoint string, method string, v interface{}) (*
 		return resp, err
 	}
 
-	// content, _ := ioutil.ReadAll(resp.Body)
-	// fmt.Println(string(content))
-
 	if v != nil {
 		err = json.NewDecoder(resp.Body).Decode(v)
 		if err == io.EOF {

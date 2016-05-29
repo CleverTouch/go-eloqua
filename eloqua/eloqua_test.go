@@ -101,13 +101,13 @@ func TestGetRequestDecodeErrorHandling(t *testing.T) {
 
 	addRestHandlerFunc("/assets/contact/lists", func(w http.ResponseWriter, req *http.Request) {
 		w.WriteHeader(200)
-		fmt.Fprint(w, `{"test": "json"}  \n\n`)
+		fmt.Fprint(w, "")
 	})
 	testModel := &ContactList{}
 	_, err = client.getRequestDecode("/assets/contact/lists", testModel)
 
 	if err != nil {
-		t.Error("EOF in json response should not return an error but it has")
+		t.Error("Empty response should not cause EOF error an error was returned")
 		t.Log(err)
 	}
 }
@@ -138,13 +138,13 @@ func TestRequestDecodeErrorHandling(t *testing.T) {
 
 	addRestHandlerFunc("/assets/contact/lists", func(w http.ResponseWriter, req *http.Request) {
 		w.WriteHeader(200)
-		fmt.Fprint(w, `{"test": "json"}  \n\n`)
+		fmt.Fprint(w, "")
 	})
 	testModel := &ContactList{}
 	_, err = client.requestDecode("/assets/contact/lists", "GET", testModel)
 
 	if err != nil {
-		t.Error("EOF in json response should not return an error but it has")
+		t.Error("Empty response should not cause EOF error an error was returned")
 		t.Log(err)
 	}
 }
