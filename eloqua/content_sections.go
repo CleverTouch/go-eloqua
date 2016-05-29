@@ -26,15 +26,12 @@ type ContentSection struct {
 	UpdatedBy    int    `json:"updatedBy,omitempty,string"`
 	ContentHTML  string `json:"contentHtml,omitempty"`
 	ContentText  string `json:"contentText,omitempty"`
+	Scope        string `json:"scope,omitempty"`
+
 	// TODO - Forms
-	// TODO - Hyperlinks
-	// TODO - Images
-	Scope string `json:"scope,omitempty"`
-	Size  struct {
-		Type   string `json:"type,omitempty"`
-		Width  int    `json:"width,omitempty,string"`
-		Height int    `json:"height,omitempty,string"`
-	}
+	Hyperlinks []Hyperlink `json:"hyperlinks,omitempty"`
+	Images     []Image     `json:"images,omitempty"`
+	Size       Size        `json:"size,omitempty"`
 }
 
 // Create a new content section in eloqua

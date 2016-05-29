@@ -23,7 +23,7 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [x] Email folders
 - [x] Email groups
 - [x] Email headers
-- [ ] Email footers
+- [x] Email footers
 - [ ] Forms
 - [ ] Form data
 - [ ] Images

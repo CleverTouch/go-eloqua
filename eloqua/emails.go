@@ -33,7 +33,7 @@ type Email struct {
 	EmailGroupID  int `json:"emailGroupId,omitempty,string"`
 	EncodingID    int `json:"encodingId,omitempty,string"`
 	// TODO - forms
-	FieldMerges []FieldMerge `json:"hyperlinks,fieldMerges"`
+	FieldMerges []FieldMerge `json:"fieldMerges,omitempty"`
 	HTMLContent HTMLContent  `json:"htmlContent,omitempty"`
 	Hyperlinks  []Hyperlink  `json:"hyperlinks,omitempty"`
 	Images      []Image      `json:"images,omitempty"`

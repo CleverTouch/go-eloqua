@@ -48,6 +48,7 @@ type Client struct {
 	EmailFolders *EmailFolderService
 	EmailGroups  *EmailGroupService
 	EmailHeaders *EmailHeaderService
+	EmailFooters *EmailFooterService
 
 	Users *UserService
 }
@@ -83,6 +84,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	c.EmailFolders = &EmailFolderService{client: c}
 	c.EmailGroups = &EmailGroupService{client: c}
 	c.EmailHeaders = &EmailHeaderService{client: c}
+	c.EmailFooters = &EmailFooterService{client: c}
 
 	c.Users = &UserService{client: c}
 
