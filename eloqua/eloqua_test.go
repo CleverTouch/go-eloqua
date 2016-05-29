@@ -71,6 +71,30 @@ func TestAuthHeader(t *testing.T) {
 	}
 }
 
+func TestRestRequestErrorHandling(t *testing.T) {
+	setup()
+	defer teardown()
+
+	resp, err := client.RestRequest("/test/endpoint", "C/A/T", "")
+
+	if err == nil {
+		t.Error("Invalid HTTP method error expected but no error was returned")
+	}
+	if resp != nil {
+		t.Error("Response expected to be nil due to early errors but is not")
+		t.Log(err)
+		t.Log(resp.Response.Request.Method)
+	}
+
+	resp, err = client.RestRequest("/test/endpoint", "GET", "")
+	if err != nil {
+		t.Error("HTTP error expected but no error was returned")
+	}
+	if resp == nil {
+		t.Error("Response expected from failed request but was found as nil")
+	}
+}
+
 func TestRequestDecodeJSONErrorHandling(t *testing.T) {
 	setup()
 	defer teardown()

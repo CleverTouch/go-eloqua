@@ -12,7 +12,7 @@ Feel free to create a pull request to contribute to the project or open an issue
 
 ## Rest API Implementation Status
 
-- [ ] Accounts
+- [x] Accounts
 - [ ] Activities
 - [x] Contacts
 - [x] Contact fields

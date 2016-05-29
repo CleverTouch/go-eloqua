@@ -34,6 +34,7 @@ type Client struct {
 	authHeader string
 
 	// The service endpoints of the API
+	Accounts        *AccountService
 	Contacts        *ContactService
 	ContactFields   *ContactFieldService
 	ContactLists    *ContactListService
@@ -67,6 +68,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	}
 
 	// Create services
+	c.Accounts = &AccountService{client: c}
 	c.Contacts = &ContactService{client: c}
 	c.ContactFields = &ContactFieldService{client: c}
 	c.ContactLists = &ContactListService{client: c}
