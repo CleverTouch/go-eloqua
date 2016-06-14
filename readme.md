@@ -28,7 +28,7 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [x] Form data
 - [x] Images
 - [ ] Landing pages
-- [ ] Microsites
+- [x] Microsites
 - [ ] Option lists
 - [x] Users - *Mostly done, Related objects to be added*
 - [ ] Campaigns

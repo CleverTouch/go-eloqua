@@ -35,27 +35,24 @@ type Client struct {
 	authHeader string
 
 	// The service endpoints of the API
-	Accounts        *AccountService
-	Contacts        *ContactService
-	ContactFields   *ContactFieldService
-	ContactLists    *ContactListService
-	ContactSegments *ContactSegmentService
-
+	Accounts         *AccountService
+	Contacts         *ContactService
+	ContactFields    *ContactFieldService
+	ContactLists     *ContactListService
+	ContactSegments  *ContactSegmentService
 	ContentSections  *ContentSectionService
 	CustomObjects    *CustomObjectService
 	CustomObjectData *CustomObjectDataService
-
-	Emails       *EmailService
-	EmailFolders *EmailFolderService
-	EmailGroups  *EmailGroupService
-	EmailHeaders *EmailHeaderService
-	EmailFooters *EmailFooterService
-	Forms        *FormService
-	FormData     *FormDataService
-
-	Images *ImageService
-
-	Users *UserService
+	Emails           *EmailService
+	EmailFolders     *EmailFolderService
+	EmailGroups      *EmailGroupService
+	EmailHeaders     *EmailHeaderService
+	EmailFooters     *EmailFooterService
+	Forms            *FormService
+	FormData         *FormDataService
+	Images           *ImageService
+	Microsites       *MicrositeService
+	Users            *UserService
 }
 
 // NewClient creates a new instance of an Eloqua HTTP client
@@ -80,11 +77,9 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	c.ContactFields = &ContactFieldService{client: c}
 	c.ContactLists = &ContactListService{client: c}
 	c.ContactSegments = &ContactSegmentService{client: c}
-
 	c.ContentSections = &ContentSectionService{client: c}
 	c.CustomObjects = &CustomObjectService{client: c}
 	c.CustomObjectData = &CustomObjectDataService{client: c}
-
 	c.Emails = &EmailService{client: c}
 	c.EmailFolders = &EmailFolderService{client: c}
 	c.EmailGroups = &EmailGroupService{client: c}
@@ -92,9 +87,8 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	c.EmailFooters = &EmailFooterService{client: c}
 	c.Forms = &FormService{client: c}
 	c.FormData = &FormDataService{client: c}
-
 	c.Images = &ImageService{client: c}
-
+	c.Microsites = &MicrositeService{client: c}
 	c.Users = &UserService{client: c}
 
 	return c
