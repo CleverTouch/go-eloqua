@@ -6,11 +6,12 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/google/go-querystring/query"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"strings"
+
+	"github.com/google/go-querystring/query"
 )
 
 var _ = fmt.Printf
@@ -52,6 +53,8 @@ type Client struct {
 	Forms        *FormService
 	FormData     *FormDataService
 
+	Images *ImageService
+
 	Users *UserService
 }
 
@@ -89,6 +92,8 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	c.EmailFooters = &EmailFooterService{client: c}
 	c.Forms = &FormService{client: c}
 	c.FormData = &FormDataService{client: c}
+
+	c.Images = &ImageService{client: c}
 
 	c.Users = &UserService{client: c}
 
@@ -379,24 +384,6 @@ type FieldMerge struct {
 	ContactFieldID int    `json:"contactFieldId,omitempty,string"`
 	DefaultValue   string `json:"defaultValue,omitempty"`
 	MergeType      string `json:"mergeType,omitempty"`
-}
-
-// Image represents an Eloqua ImageFile object.
-// It's commonly found in assets such as emails and landing pages.
-type Image struct {
-	Type         string   `json:"type,omitempty"`
-	ID           int      `json:"id,omitempty,string"`
-	Depth        string   `json:"depth,omitempty"`
-	Name         string   `json:"name,omitempty"`
-	FolderID     int      `json:"folderId,omitempty,string"`
-	CreatedAt    int      `json:"createdAt,omitempty,string"`
-	CreatedBy    int      `json:"createdBy,omitempty,string"`
-	UpdatedAt    int      `json:"updatedAt,omitempty,string"`
-	UpdatedBy    int      `json:"updatedBy,omitempty,string"`
-	Permissions  []string `json:"permissions,omitempty"`
-	FullImageUrl string   `json:"fullImageUrl,omitempty"`
-	Size         Size     `json:"size,omitempty"`
-	ThumbnailUrl string   `json:"thumbnailUrl,omitempty"`
 }
 
 // Size is a universal Eloqua object to simply track width & height

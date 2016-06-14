@@ -26,7 +26,7 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [x] Email footers
 - [x] Forms - *FormSteps only have basic representation*
 - [x] Form data
-- [ ] Images
+- [x] Images
 - [ ] Landing pages
 - [ ] Microsites
 - [ ] Option lists
