@@ -54,6 +54,7 @@ type Client struct {
 	Microsites       *MicrositeService
 	OptionLists      *OptionListService
 	Users            *UserService
+	Visitors         *VisitorService
 }
 
 // NewClient creates a new instance of an Eloqua HTTP client
@@ -92,6 +93,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	c.Microsites = &MicrositeService{client: c}
 	c.OptionLists = &OptionListService{client: c}
 	c.Users = &UserService{client: c}
+	c.Visitors = &VisitorService{client: c}
 
 	return c
 }

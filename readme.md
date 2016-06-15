@@ -37,7 +37,7 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [ ] External activities
 - [ ] External assets
 - [ ] External asset types
-- [ ] Visitors
+- [x] Visitors
 
 ## Bulk API Implementation Status
 
