@@ -52,6 +52,7 @@ type Client struct {
 	FormData         *FormDataService
 	Images           *ImageService
 	Microsites       *MicrositeService
+	OptionLists      *OptionListService
 	Users            *UserService
 }
 
@@ -89,6 +90,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	c.FormData = &FormDataService{client: c}
 	c.Images = &ImageService{client: c}
 	c.Microsites = &MicrositeService{client: c}
+	c.OptionLists = &OptionListService{client: c}
 	c.Users = &UserService{client: c}
 
 	return c

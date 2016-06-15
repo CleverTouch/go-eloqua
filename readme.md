@@ -29,7 +29,7 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [x] Images
 - [ ] Landing pages
 - [x] Microsites
-- [ ] Option lists
+- [x] Option lists
 - [x] Users - *Mostly done, Related objects to be added*
 - [ ] Campaigns
 - [x] Custom objects
