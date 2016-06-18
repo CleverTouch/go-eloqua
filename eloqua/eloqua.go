@@ -49,6 +49,7 @@ type Client struct {
 	EmailGroups      *EmailGroupService
 	EmailHeaders     *EmailHeaderService
 	EmailFooters     *EmailFooterService
+	ExternalActivity *ExternalActivityService
 	Forms            *FormService
 	FormData         *FormDataService
 	Images           *ImageService
@@ -89,6 +90,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	c.EmailGroups = &EmailGroupService{client: c}
 	c.EmailHeaders = &EmailHeaderService{client: c}
 	c.EmailFooters = &EmailFooterService{client: c}
+	c.ExternalActivity = &ExternalActivityService{client: c}
 	c.Forms = &FormService{client: c}
 	c.FormData = &FormDataService{client: c}
 	c.Images = &ImageService{client: c}

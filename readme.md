@@ -1,8 +1,11 @@
 # go-eloqua
 
-[![GoDoc](https://godoc.org/github.com/CleverTouch/go-eloqua/eloqua?status.svg)](https://godoc.org/github.com/CleverTouch/go-eloqua/eloqua) [![Build Status](https://travis-ci.org/CleverTouch/go-eloqua.svg?branch=master)](https://travis-ci.org/CleverTouch/go-eloqua) [![Coverage Status](https://coveralls.io/repos/github/CleverTouch/go-eloqua/badge.svg?branch=master)](https://coveralls.io/github/CleverTouch/go-eloqua?branch=master)
+[![GoDoc](https://godoc.org/github.com/CleverTouch/go-eloqua/eloqua?status.svg)](https://godoc.org/github.com/CleverTouch/go-eloqua/eloqua)
+[![license](https://img.shields.io/github/license/CleverTouch/go-eloqua.svg?maxAge=2592000)](https://github.com/CleverTouch/go-eloqua/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/CleverTouch/go-eloqua.svg?branch=master)](https://travis-ci.org/CleverTouch/go-eloqua)
+[![Coverage Status](https://coveralls.io/repos/github/CleverTouch/go-eloqua/badge.svg?branch=master)](https://coveralls.io/github/CleverTouch/go-eloqua?branch=master)
 
-go-eloqua is a golang based library for accessing the Eloqua REST API's.
+go-eloqua is a golang library for accessing the Eloqua REST APIs.
 
 **The library is currently in rapid development so production use is not advised until the library has matured.**
 
@@ -10,7 +13,10 @@ Better documentation and example code is planned once the library is more comple
 
 Feel free to create a pull request to contribute to the project or open an issue to request a feature or report a bug.
 
-## Rest API Implementation Status
+## Rest API
+
+The library is focused on using the 2.0 REST API endpoints.
+The vast majority of Eloqua models have been created as golang structs. 
 
 - [x] Accounts
 - [ ] Activities
@@ -34,7 +40,7 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [x] Campaigns - *Campaign Elements only have basic representation*
 - [x] Custom objects
 - [x] Custom object data
-- [ ] External activities
+- [x] External activities
 - [ ] External assets
 - [ ] External asset types
 - [x] Visitors
@@ -45,7 +51,9 @@ Support for the bulk API is planned once all the REST endpoints are supported.
 
 ## License
 
-This library is distributed under the MIT license. 
+This library is distributed under the MIT license. This library is not the works of Oracle and is not an offical Eloqua library so no official Eloqua support is provided for its use.
+
+The API endpoints used, data models & Oracle documentation links are works of Oracle and do not come under this project's licence.
 
 ## Attribution
 
