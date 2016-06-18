@@ -36,6 +36,7 @@ type Client struct {
 
 	// The service endpoints of the API
 	Accounts         *AccountService
+	Campaigns        *CampaignService
 	Contacts         *ContactService
 	ContactFields    *ContactFieldService
 	ContactLists     *ContactListService
@@ -75,6 +76,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 
 	// Create services
 	c.Accounts = &AccountService{client: c}
+	c.Campaigns = &CampaignService{client: c}
 	c.Contacts = &ContactService{client: c}
 	c.ContactFields = &ContactFieldService{client: c}
 	c.ContactLists = &ContactListService{client: c}
@@ -397,4 +399,12 @@ type Size struct {
 // Just a type available.
 type TypeObject struct {
 	Type string `json:"type,omitempty"`
+}
+
+// Position simply stores x/y coordinates. It's used for the positioning of other elements
+// such as campaign elements.
+type Position struct {
+	Type string `json:"type,omitempty"`
+	X    int    `json:"x,omitempty,string"`
+	Y    int    `json:"y,omitempty,string"`
 }

@@ -31,7 +31,7 @@ Feel free to create a pull request to contribute to the project or open an issue
 - [x] Microsites
 - [x] Option lists
 - [x] Users - *Mostly done, Related objects to be added*
-- [ ] Campaigns
+- [x] Campaigns - *Campaign Elements only have basic representation*
 - [x] Custom objects
 - [x] Custom object data
 - [ ] External activities
