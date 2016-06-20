@@ -24,7 +24,7 @@ The vast majority of Eloqua models have been created as golang structs.
 - [x] Contact fields
 - [x] Contact lists
 - [x] Contact segments
-- [x] Content sections - *Mostly done, Related objects to be added*
+- [x] Content sections
 - [x] Emails - *Mostly done, Related objects to be added*
 - [x] Email folders
 - [x] Email groups
@@ -33,7 +33,7 @@ The vast majority of Eloqua models have been created as golang structs.
 - [x] Forms - *FormSteps only have basic representation*
 - [x] Form data
 - [x] Images
-- [ ] Landing pages
+- [x] Landing pages - *Mostly done, Related objects to be added*
 - [x] Microsites
 - [x] Option lists
 - [x] Users - *Mostly done, Related objects to be added*

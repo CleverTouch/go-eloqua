@@ -15,23 +15,22 @@ type ContentSectionService struct {
 // ContentSection represents an Eloqua content section object.
 // In Eloqua these are known as 'Shared Content'
 type ContentSection struct {
-	Type        string `json:"type,omitempty"`
-	ID          int    `json:"id,omitempty,string"`
-	CreatedAt   int    `json:"createdAt,omitempty,string"`
-	CreatedBy   int    `json:"createdBy,omitempty,string"`
-	Depth       string `json:"depth,omitempty"`
-	Name        string `json:"name,omitempty"`
-	Description string `json:"description,omitempty"`
-	UpdatedAt   int    `json:"updatedAt,omitempty,string"`
-	UpdatedBy   int    `json:"updatedBy,omitempty,string"`
-	ContentHTML string `json:"contentHtml,omitempty"`
-	ContentText string `json:"contentText,omitempty"`
-	Scope       string `json:"scope,omitempty"`
-
-	// TODO - Forms
-	Hyperlinks []Hyperlink `json:"hyperlinks,omitempty"`
-	Images     []Image     `json:"images,omitempty"`
-	Size       Size        `json:"size,omitempty"`
+	Type        string      `json:"type,omitempty"`
+	ID          int         `json:"id,omitempty,string"`
+	CreatedAt   int         `json:"createdAt,omitempty,string"`
+	CreatedBy   int         `json:"createdBy,omitempty,string"`
+	Depth       string      `json:"depth,omitempty"`
+	Name        string      `json:"name,omitempty"`
+	Description string      `json:"description,omitempty"`
+	UpdatedAt   int         `json:"updatedAt,omitempty,string"`
+	UpdatedBy   int         `json:"updatedBy,omitempty,string"`
+	ContentHTML string      `json:"contentHtml,omitempty"`
+	ContentText string      `json:"contentText,omitempty"`
+	Scope       string      `json:"scope,omitempty"`
+	Forms       []Form      `json:"forms,omitempty"`
+	Hyperlinks  []Hyperlink `json:"hyperlinks,omitempty"`
+	Images      []Image     `json:"images,omitempty"`
+	Size        Size        `json:"size,omitempty"`
 }
 
 // Create a new content section in eloqua

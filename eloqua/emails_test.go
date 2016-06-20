@@ -151,7 +151,7 @@ func TestUserUpdateWithoutPassingEmail(t *testing.T) {
 	}
 
 	resultModel := &Email{Type: "Email", Name: "Test Email Updated",
-		ID: 8, HTMLContent: HTMLContent{ContentType: "RawHtmlContent", HTML: "Hello"}}
+		ID: 8, HTMLContent: HTMLContent{Type: "RawHtmlContent", HTML: "Hello"}}
 	testModels(t, "Emails.Update (without model)", email, resultModel)
 }
 

@@ -55,6 +55,7 @@ type Client struct {
 	Forms              *FormService
 	FormData           *FormDataService
 	Images             *ImageService
+	LandingPages       *LandingPageService
 	Microsites         *MicrositeService
 	OptionLists        *OptionListService
 	Users              *UserService
@@ -98,6 +99,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	c.Forms = &FormService{client: c}
 	c.FormData = &FormDataService{client: c}
 	c.Images = &ImageService{client: c}
+	c.LandingPages = &LandingPageService{client: c}
 	c.Microsites = &MicrositeService{client: c}
 	c.OptionLists = &OptionListService{client: c}
 	c.Users = &UserService{client: c}
@@ -357,6 +359,13 @@ func checkResponse(r *Response) error {
 	}
 
 	return errors.New("There was an issue performing your request")
+}
+
+// HTMLContent represents the htmlContent model of an Eloqua email or landing page object
+type HTMLContent struct {
+	Type          string `json:"type,omitempty"`
+	ContentSource string `json:"contentSource,omitempty"`
+	HTML          string `json:"html,omitempty"`
 }
 
 // FieldValue represents the structure in which custom field values are passed
