@@ -26,6 +26,17 @@ type ExternalActivity struct {
 	CampaignID   int    `json:"campaignId,omitempty"`
 }
 
+type ExternalActivityType struct {
+	Type      string `json:"type,omitempty"`
+	ID        int    `json:"id,omitempty,string"`
+	CreatedAt int    `json:"createdAt,omitempty,string"`
+	CreatedBy int    `json:"createdBy,omitempty,string"`
+	Depth     string `json:"depth,omitempty"`
+	Name      string `json:"name,omitempty"`
+	UpdatedAt int    `json:"updatedAt,omitempty,string"`
+	UpdatedBy int    `json:"updatedBy,omitempty,string"`
+}
+
 // Create a new External Activity in eloqua.
 // This method call is long due to the amount of required fields at this endpoint.
 // Although ActivityDate is not required for creation, you should pass it through on the final parameter

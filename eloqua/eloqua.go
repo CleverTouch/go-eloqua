@@ -35,29 +35,30 @@ type Client struct {
 	authHeader string
 
 	// The service endpoints of the API
-	Accounts         *AccountService
-	Campaigns        *CampaignService
-	Contacts         *ContactService
-	ContactFields    *ContactFieldService
-	ContactLists     *ContactListService
-	ContactSegments  *ContactSegmentService
-	ContentSections  *ContentSectionService
-	CustomObjects    *CustomObjectService
-	CustomObjectData *CustomObjectDataService
-	Emails           *EmailService
-	EmailFolders     *EmailFolderService
-	EmailGroups      *EmailGroupService
-	EmailHeaders     *EmailHeaderService
-	EmailFooters     *EmailFooterService
-	ExternalActivity *ExternalActivityService
-	ExternalAssets   *ExternalAssetService
-	Forms            *FormService
-	FormData         *FormDataService
-	Images           *ImageService
-	Microsites       *MicrositeService
-	OptionLists      *OptionListService
-	Users            *UserService
-	Visitors         *VisitorService
+	Accounts           *AccountService
+	Campaigns          *CampaignService
+	Contacts           *ContactService
+	ContactFields      *ContactFieldService
+	ContactLists       *ContactListService
+	ContactSegments    *ContactSegmentService
+	ContentSections    *ContentSectionService
+	CustomObjects      *CustomObjectService
+	CustomObjectData   *CustomObjectDataService
+	Emails             *EmailService
+	EmailFolders       *EmailFolderService
+	EmailGroups        *EmailGroupService
+	EmailHeaders       *EmailHeaderService
+	EmailFooters       *EmailFooterService
+	ExternalActivity   *ExternalActivityService
+	ExternalAssets     *ExternalAssetService
+	ExternalAssetTypes *ExternalAssetTypeService
+	Forms              *FormService
+	FormData           *FormDataService
+	Images             *ImageService
+	Microsites         *MicrositeService
+	OptionLists        *OptionListService
+	Users              *UserService
+	Visitors           *VisitorService
 }
 
 // NewClient creates a new instance of an Eloqua HTTP client
@@ -93,6 +94,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 	c.EmailFooters = &EmailFooterService{client: c}
 	c.ExternalActivity = &ExternalActivityService{client: c}
 	c.ExternalAssets = &ExternalAssetService{client: c}
+	c.ExternalAssetTypes = &ExternalAssetTypeService{client: c}
 	c.Forms = &FormService{client: c}
 	c.FormData = &FormDataService{client: c}
 	c.Images = &ImageService{client: c}
