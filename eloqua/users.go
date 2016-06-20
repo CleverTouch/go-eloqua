@@ -16,11 +16,11 @@ type UserService struct {
 type User struct {
 	Type                 string   `json:"type,omitempty"`
 	AccessedAt           int      `json:"accessedAt,omitempty,string"`
-	CurrentStatus        string   `json:"currentStatus,omitempty`
+	CurrentStatus        string   `json:"currentStatus,omitempty"`
 	ID                   int      `json:"id,omitempty,string"`
 	CreatedAt            int      `json:"createdAt,omitempty,string"`
 	CreatedBy            int      `json:"createdBy,omitempty,string"`
-	Description          string   `json:"description,omitempty`
+	Description          string   `json:"description,omitempty"`
 	Depth                string   `json:"depth,omitempty"`
 	FolderID             int      `json:"folderId,omitempty,string"`
 	Name                 string   `json:"name,omitempty"`

@@ -38,7 +38,7 @@ type Email struct {
 	Hyperlinks  []Hyperlink  `json:"hyperlinks,omitempty"`
 	Images      []Image      `json:"images,omitempty"`
 
-	PlainTextEditable bool   `json:"isPlainTextEditable,omitempty",string`
+	PlainTextEditable bool   `json:"isPlainTextEditable,omitempty,string"`
 	Tracked           bool   `json:"isTracked,omitempty,string"`
 	Subject           string `json:"subject,omitempty"`
 	// TODO - landing pages

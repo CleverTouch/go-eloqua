@@ -41,8 +41,8 @@ The vast majority of Eloqua models have been created as golang structs.
 - [x] Custom objects
 - [x] Custom object data
 - [x] External activities
-- [ ] External assets
-- [ ] External asset types
+- [x] External assets
+- [x] External asset types
 - [x] Visitors
 
 ## Bulk API Implementation Status
