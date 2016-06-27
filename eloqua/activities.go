@@ -34,9 +34,9 @@ type ActivityDetail struct {
 // List many Eloqua activities.
 // Due to this being an old 1.0 endpoint this does not give the usual listing result,
 // It will only provide a simple list of activity items.
-func (e *ActivityService) List(contactId int, activtyType string, startDate int, endDate int, count int) ([]Activity, *Response, error) {
+func (e *ActivityService) List(contactID int, activtyType string, startDate int, endDate int, count int) ([]Activity, *Response, error) {
 	queryString := fmt.Sprintf("type=%s&startDate=%d&endDate=%d&count=%d", activtyType, startDate, endDate, count)
-	endpoint := fmt.Sprintf("/api/rest/1.0/data/activities/contact/%d?%s", contactId, queryString)
+	endpoint := fmt.Sprintf("/api/rest/1.0/data/activities/contact/%d?%s", contactID, queryString)
 	activities := new([]Activity)
 	resp, err := e.client.getRequestDecode(endpoint, activities)
 	return *activities, resp, err

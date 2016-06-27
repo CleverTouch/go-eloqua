@@ -35,7 +35,7 @@ type LandingPage struct {
 	Hyperlinks          []Hyperlink      `json:"hyperlinks,omitempty"`
 	Images              []Image          `json:"images,omitempty"`
 	Layout              string           `json:"layout,omitempty"`
-	MicrositeId         int              `json:"micrositeId,omitempty,string"`
+	MicrositeID         int              `json:"micrositeId,omitempty,string"`
 	Style               string           `json:"style,omitempty"`
 	RefreshedAt         int              `json:"refreshedAt,omitempty,string"`
 	RelativePath        string           `json:"relativePath,omitempty"`

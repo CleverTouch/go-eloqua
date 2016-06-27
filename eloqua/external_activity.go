@@ -26,6 +26,7 @@ type ExternalActivity struct {
 	CampaignID   int    `json:"campaignId,omitempty"`
 }
 
+// ExternalActivityType represents a 'Type' of external activity.
 type ExternalActivityType struct {
 	Type      string `json:"type,omitempty"`
 	ID        int    `json:"id,omitempty,string"`
