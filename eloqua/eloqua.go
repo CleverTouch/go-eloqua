@@ -401,17 +401,80 @@ type Hyperlink struct {
 // FieldMerge is an Eloqua FieldMerge Object.
 // The fields available depend on the merge source (or type).
 type FieldMerge struct {
-	Type           string `json:"type,omitempty"`
-	ID             int    `json:"id,omitempty,string"`
-	Depth          string `json:"depth,omitempty"`
-	Name           string `json:"name,omitempty"`
-	FolderID       int    `json:"folderId,omitempty,string"`
-	Syntax         string `json:"syntax,omitempty"`
-	UpdatedAt      int    `json:"updatedAt,omitempty,string"`
-	UpdatedBy      int    `json:"updatedBy,omitempty,string"`
-	ContactFieldID int    `json:"contactFieldId,omitempty,string"`
-	DefaultValue   string `json:"defaultValue,omitempty"`
-	MergeType      string `json:"mergeType,omitempty"`
+	Type                  string                `json:"type,omitempty"`
+	ID                    int                   `json:"id,omitempty,string"`
+	Depth                 string                `json:"depth,omitempty"`
+	Name                  string                `json:"name,omitempty"`
+	FolderID              int                   `json:"folderId,omitempty,string"`
+	Syntax                string                `json:"syntax,omitempty"`
+	UpdatedAt             int                   `json:"updatedAt,omitempty,string"`
+	UpdatedBy             int                   `json:"updatedBy,omitempty,string"`
+	ContactFieldID        int                   `json:"contactFieldId,omitempty,string"`
+	DefaultValue          string                `json:"defaultValue,omitempty"`
+	MergeType             string                `json:"mergeType,omitempty"`
+	DefaultContentSection DynamicContentSection `json:"defaultContentSection,omitempty"`
+}
+
+// DynamicContent represents Eloqua Dynamic Content objects.
+// These can be found as part of emails or landing pages.
+type DynamicContent struct {
+	Type        string               `json:"type,omitempty"`
+	ID          int                  `json:"id,omitempty,string"`
+	Depth       string               `json:"depth,omitempty"`
+	Name        string               `json:"name,omitempty"`
+	FolderID    int                  `json:"folderId,omitempty,string"`
+	UpdatedAt   int                  `json:"updatedAt,omitempty,string"`
+	UpdatedBy   int                  `json:"updatedBy,omitempty,string"`
+	CreatedAt   int                  `json:"createdAt,omitempty,string"`
+	CreatedBy   int                  `json:"createdBy,omitempty,string"`
+	Permissions []string             `json:"permissions,omitempty"`
+	Rules       []DynamicContentRule `json:"rules,omitempty"`
+}
+
+// DynamicContentSection represents the 'section' of content of an Eloqua dynmaic content object.
+type DynamicContentSection struct {
+	Type        string      `json:"type,omitempty"`
+	ID          int         `json:"id,omitempty,string"`
+	Depth       string      `json:"depth,omitempty"`
+	Name        string      `json:"name,omitempty"`
+	FolderID    int         `json:"folderId,omitempty,string"`
+	Permissions []string    `json:"permissions,omitempty"`
+	UpdatedAt   int         `json:"updatedAt,omitempty,string"`
+	UpdatedBy   int         `json:"updatedBy,omitempty,string"`
+	CreatedAt   int         `json:"createdAt,omitempty,string"`
+	CreatedBy   int         `json:"createdBy,omitempty,string"`
+	ContentHTML string      `json:"contentHtml,omitempty"`
+	ContentText string      `json:"contentText,omitempty"`
+	Forms       []Form      `json:"forms,omitempty"`
+	Hyperlinks  []Hyperlink `json:"hyperlinks,omitempty"`
+	Images      []Image     `json:"images,omitempty"`
+	Scope       string      `json:"scope,omitempty"`
+	Size        Size        `json:"size,omitempty"`
+}
+
+// DynamicContentRule specifies the conditions for Dynamic Content to be shown.
+type DynamicContentRule struct {
+	Type           string                  `json:"type,omitempty"`
+	ID             int                     `json:"id,omitempty,string"`
+	ContentSection DynamicContentSection   `json:"contentSection,omitempty"`
+	Depth          string                  `json:"depth,omitempty"`
+	Statement      int                     `json:"statement,omitempty,string"`
+	Criteria       []ContactFieldCriterion `json:"criteria,omitempty"`
+}
+
+// ContactFieldCriterion is a simple criteria for finding a match against the contact record.
+type ContactFieldCriterion struct {
+	Type      string             `json:"type,omitempty"`
+	ID        int                `json:"id,omitempty,string"`
+	FieldID   int                `json:"fieldId,omitempty,string"`
+	Condition TextValueCondition `json:"condition,omitempty"`
+}
+
+// TextValueCondition represents the conditional matching of simple text values.
+type TextValueCondition struct {
+	Type     string `json:"type,omitempty"`
+	Operator string `json:"operator,omitempty"`
+	Value    string `json:"value,omitempty"`
 }
 
 // Size is a universal Eloqua object to simply track width & height

@@ -14,41 +14,41 @@ type EmailService struct {
 
 // Email represents an Eloqua email object.
 type Email struct {
-	Type            string           `json:"type,omitempty"`
-	CurrentStatus   string           `json:"currentStatus,omitempty"`
-	ID              int              `json:"id,omitempty,string"`
-	CreatedAt       int              `json:"createdAt,omitempty,string"`
-	CreatedBy       int              `json:"createdBy,omitempty,string"`
-	Depth           string           `json:"depth,omitempty"`
-	FolderID        int              `json:"folderId,omitempty,string"`
-	Name            string           `json:"name,omitempty"`
-	Permissions     []string         `json:"permissions,omitempty"`
-	UpdatedAt       int              `json:"updatedAt,omitempty,string"`
-	UpdatedBy       int              `json:"updatedBy,omitempty,string"`
-	BounceBackEmail string           `json:"bounceBackEmail,omitempty"`
-	ContentSections []ContentSection `json:"contentSections,omitempty"`
-	// TODO - dynamicContents
-	EmailFooterID     int           `json:"emailFooterId,omitempty,string"`
-	EmailHeaderID     int           `json:"emailHeaderId,omitempty,string"`
-	EmailGroupID      int           `json:"emailGroupId,omitempty,string"`
-	EncodingID        int           `json:"encodingId,omitempty,string"`
-	Forms             []Form        `json:"forms,omitempty"`
-	FieldMerges       []FieldMerge  `json:"fieldMerges,omitempty"`
-	HTMLContent       HTMLContent   `json:"htmlContent,omitempty"`
-	Hyperlinks        []Hyperlink   `json:"hyperlinks,omitempty"`
-	Images            []Image       `json:"images,omitempty"`
-	LandingPages      []LandingPage `json:"landingPages,omitempty"`
-	PlainTextEditable bool          `json:"isPlainTextEditable,omitempty,string"`
-	Tracked           bool          `json:"isTracked,omitempty,string"`
-	Subject           string        `json:"subject,omitempty"`
-	Layout            string        `json:"layout,omitempty"`
-	PlainText         string        `json:"plainText,omitempty"`
-	ReplyToEmail      string        `json:"replyToEmail,omitempty"`
-	ReplyToName       string        `json:"replyToName,omitempty"`
-	SendPlainTextOnly bool          `json:"sendPlainTextOnly,omitempty,string"`
-	SenderEmail       string        `json:"senderEmail,omitempty"`
-	SenderName        string        `json:"senderName,omitempty"`
-	Style             string        `json:"style,omitempty"`
+	Type              string           `json:"type,omitempty"`
+	CurrentStatus     string           `json:"currentStatus,omitempty"`
+	ID                int              `json:"id,omitempty,string"`
+	CreatedAt         int              `json:"createdAt,omitempty,string"`
+	CreatedBy         int              `json:"createdBy,omitempty,string"`
+	Depth             string           `json:"depth,omitempty"`
+	FolderID          int              `json:"folderId,omitempty,string"`
+	Name              string           `json:"name,omitempty"`
+	Permissions       []string         `json:"permissions,omitempty"`
+	UpdatedAt         int              `json:"updatedAt,omitempty,string"`
+	UpdatedBy         int              `json:"updatedBy,omitempty,string"`
+	BounceBackEmail   string           `json:"bounceBackEmail,omitempty"`
+	ContentSections   []ContentSection `json:"contentSections,omitempty"`
+	DynamicContents   []DynamicContent `json:"dynamicContents,omitempty"`
+	EmailFooterID     int              `json:"emailFooterId,omitempty,string"`
+	EmailHeaderID     int              `json:"emailHeaderId,omitempty,string"`
+	EmailGroupID      int              `json:"emailGroupId,omitempty,string"`
+	EncodingID        int              `json:"encodingId,omitempty,string"`
+	Forms             []Form           `json:"forms,omitempty"`
+	FieldMerges       []FieldMerge     `json:"fieldMerges,omitempty"`
+	HTMLContent       HTMLContent      `json:"htmlContent,omitempty"`
+	Hyperlinks        []Hyperlink      `json:"hyperlinks,omitempty"`
+	Images            []Image          `json:"images,omitempty"`
+	LandingPages      []LandingPage    `json:"landingPages,omitempty"`
+	PlainTextEditable bool             `json:"isPlainTextEditable,omitempty,string"`
+	Tracked           bool             `json:"isTracked,omitempty,string"`
+	Subject           string           `json:"subject,omitempty"`
+	Layout            string           `json:"layout,omitempty"`
+	PlainText         string           `json:"plainText,omitempty"`
+	ReplyToEmail      string           `json:"replyToEmail,omitempty"`
+	ReplyToName       string           `json:"replyToName,omitempty"`
+	SendPlainTextOnly bool             `json:"sendPlainTextOnly,omitempty,string"`
+	SenderEmail       string           `json:"senderEmail,omitempty"`
+	SenderName        string           `json:"senderName,omitempty"`
+	Style             string           `json:"style,omitempty"`
 }
 
 // Create a new email in eloqua

@@ -29,16 +29,16 @@ type LandingPage struct {
 	AutoRedirectWaitFor int              `json:"autoRedirectWaitFor,omitempty,string"`
 	ContentSections     []ContentSection `json:"contentSections,omitempty"`
 	DeployedAt          int              `json:"deployedAt,omitempty,string"`
-	// TODO - dynamicContents
-	Forms        []Form      `json:"forms,omitempty"`
-	HTMLContent  HTMLContent `json:"htmlContent,omitempty"`
-	Hyperlinks   []Hyperlink `json:"hyperlinks,omitempty"`
-	Images       []Image     `json:"images,omitempty"`
-	Layout       string      `json:"layout,omitempty"`
-	MicrositeId  int         `json:"micrositeId,omitempty,string"`
-	Style        string      `json:"style,omitempty"`
-	RefreshedAt  int         `json:"refreshedAt,omitempty,string"`
-	RelativePath string      `json:"relativePath,omitempty"`
+	DynamicContents     []DynamicContent `json:"dynamicContents,omitempty"`
+	Forms               []Form           `json:"forms,omitempty"`
+	HTMLContent         HTMLContent      `json:"htmlContent,omitempty"`
+	Hyperlinks          []Hyperlink      `json:"hyperlinks,omitempty"`
+	Images              []Image          `json:"images,omitempty"`
+	Layout              string           `json:"layout,omitempty"`
+	MicrositeId         int              `json:"micrositeId,omitempty,string"`
+	Style               string           `json:"style,omitempty"`
+	RefreshedAt         int              `json:"refreshedAt,omitempty,string"`
+	RelativePath        string           `json:"relativePath,omitempty"`
 
 	IsContentProtected        bool `json:"isContentProtected,omitempty,string"`
 	ExcludeFromAuthentication bool `json:"excludeFromAuthentication,omitempty,string"`
