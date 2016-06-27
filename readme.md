@@ -19,7 +19,7 @@ The library is focused on using the 2.0 REST API endpoints.
 The vast majority of Eloqua models have been created as golang structs. 
 
 - [x] Accounts
-- [ ] Activities
+- [x] Activities
 - [x] Contacts
 - [x] Contact fields
 - [x] Contact lists

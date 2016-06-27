@@ -33,6 +33,10 @@ func addRestHandlerFunc(endpoint string, handler func(http.ResponseWriter, *http
 	mux.HandleFunc("/api/rest/2.0/"+strings.Trim(endpoint, " /"), handler)
 }
 
+func addLegacyRestHandlerFunc(endpoint string, handler func(http.ResponseWriter, *http.Request)) {
+	mux.HandleFunc("/api/rest/1.0/"+strings.Trim(endpoint, " /"), handler)
+}
+
 // teardown does any cleanup operations, Specifically closes down the http server
 func teardown() {
 	server.Close()

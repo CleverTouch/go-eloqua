@@ -36,6 +36,7 @@ type Client struct {
 
 	// The service endpoints of the API
 	Accounts           *AccountService
+	Activities         *ActivityService
 	Campaigns          *CampaignService
 	Contacts           *ContactService
 	ContactFields      *ContactFieldService
@@ -80,6 +81,7 @@ func NewClient(baseURL string, companyName string, userName string, password str
 
 	// Create services
 	c.Accounts = &AccountService{client: c}
+	c.Activities = &ActivityService{client: c}
 	c.Campaigns = &CampaignService{client: c}
 	c.Contacts = &ContactService{client: c}
 	c.ContactFields = &ContactFieldService{client: c}
@@ -160,7 +162,18 @@ type ListOptions struct {
 // It's very general but simple performs much of the boilerplate request actions such
 // as setting the correct api url and adding auth headers.
 func (c *Client) RestRequest(endpoint string, method string, jsonData string) (*Response, error) {
-	url := c.BaseURL + "/api/rest/2.0/" + strings.Trim(endpoint, " /")
+	url := c.BaseURL
+	endpoint = strings.Trim(endpoint, " /")
+
+	// Assume rest 2.0 if not in request
+	if strings.Index(endpoint, "api/rest") == -1 {
+		url += "/api/rest/2.0/"
+	} else {
+		url += "/"
+	}
+
+	url += endpoint
+
 	// fmt.Println(jsonData)
 	jsonStr := []byte(jsonData)
 	req, err := http.NewRequest(strings.ToUpper(method), url, bytes.NewBuffer(jsonStr))
