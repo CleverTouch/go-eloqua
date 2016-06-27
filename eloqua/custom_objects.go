@@ -7,7 +7,7 @@ import (
 // CustomObjectService provides access to all the endpoints related
 // to custom object data within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Custom objects/customObjects-API.htm
+// Eloqua API docs: https://goo.gl/cQyZYx
 type CustomObjectService struct {
 	client *Client
 }

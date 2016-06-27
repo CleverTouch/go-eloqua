@@ -7,45 +7,26 @@
 
 go-eloqua is a golang library for accessing the Eloqua REST APIs.
 
-**The library is currently in rapid development so production use is not advised until the library has matured.**
-
 Better documentation and example code is planned once the library is more complete.
-
-Feel free to create a pull request to contribute to the project or open an issue to request a feature or report a bug.
 
 ## Rest API
 
 The library is focused on using the 2.0 REST API endpoints.
-The vast majority of Eloqua models have been created as golang structs. 
+The vast majority of Eloqua models have been created as golang structs.
+All the endpoints in the official Eloqua docs, As of writing, are implemented in this library.
 
-- [x] Accounts
-- [x] Activities
-- [x] Contacts
-- [x] Contact fields
-- [x] Contact lists
-- [x] Contact segments
-- [x] Content sections
-- [x] Emails
-- [x] Email folders
-- [x] Email groups
-- [x] Email headers
-- [x] Email footers
-- [x] Forms - *FormSteps only have basic representation*
-- [x] Form data
-- [x] Images
-- [x] Landing pages
-- [x] Microsites
-- [x] Option lists
-- [x] Users
-- [x] Campaigns - *Campaign Elements only have basic representation*
-- [x] Custom objects
-- [x] Custom object data
-- [x] External activities
-- [x] External assets
-- [x] External asset types
-- [x] Visitors
+There are many other API endpoints that are not in the official documentation. Feel free to create a pull request or open an issue for these but be warned that they may not be very stable. 
 
-## Bulk API Implementation Status
+#### Limitations
+
+Listed below are some areas of the API that are known to not be fully implemented:
+
+* Form processing steps only have generic struct representation.
+* Campaign Elements (Or steps) only have generic representation.
+* The dynamic content rules are very basic and all the different rules are not current supported.
+* Segment filter rules have not been implemented.
+
+## Bulk API
 
 Support for the bulk API is planned once all the REST endpoints are supported.
 

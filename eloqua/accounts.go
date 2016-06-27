@@ -7,7 +7,7 @@ import (
 // AccountService provides access to all the endpoints related
 // to account data within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Accounts/accounts-API.htm
+// Eloqua API docs: https://goo.gl/s1bDwX
 type AccountService struct {
 	client *Client
 }

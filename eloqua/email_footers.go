@@ -9,7 +9,7 @@ import (
 //
 // The official Eloqua documentation did not seem to contain footers but everything
 // appears to be the same as EmailHeaders references in the below link.
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Email headers/emailHeaders-API.htm
+// Eloqua API docs: https://goo.gl/aCdAXT
 type EmailFooterService struct {
 	client *Client
 }

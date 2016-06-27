@@ -7,7 +7,7 @@ import (
 // UserService provides access to all endpoints related to
 // managing Eloqua system users.
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Users/users-API.htm
+// Eloqua API docs: https://goo.gl/5LXJ7q
 type UserService struct {
 	client *Client
 }

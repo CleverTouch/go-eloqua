@@ -7,7 +7,7 @@ import (
 // ExternalAssetService provides access to all the endpoints related
 // to External Assets within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/2.0 Endpoints/External assets/externalAssets-API.htm
+// Eloqua API docs: https://goo.gl/lntJIr
 type ExternalAssetService struct {
 	client *Client
 }

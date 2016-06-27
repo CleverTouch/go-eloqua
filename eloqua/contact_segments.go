@@ -7,7 +7,7 @@ import (
 // ContactSegmentService provides access to all the endpoints related
 // to contact segment data within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Contact segments/contactSegments-API.htm
+// Eloqua API docs: https://goo.gl/LdUrZH
 type ContactSegmentService struct {
 	client *Client
 }

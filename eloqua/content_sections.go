@@ -7,7 +7,7 @@ import (
 // ContentSectionService provides access to all the endpoints related
 // to content section data within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Content sections/get-assets-contentSection.htm
+// Eloqua API docs: https://goo.gl/cKpFbL
 type ContentSectionService struct {
 	client *Client
 }

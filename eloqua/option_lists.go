@@ -7,7 +7,7 @@ import (
 // OptionListService provides access to all the endpoints related
 // to Option List data within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Option lists/optionLists-API.htm
+// Eloqua API docs: https://goo.gl/KyNNO1
 type OptionListService struct {
 	client *Client
 }

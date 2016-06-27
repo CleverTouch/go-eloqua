@@ -7,7 +7,7 @@ import (
 // ContactFieldService provides access to all the endpoints related
 // to contact field data within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Contact fields/contactFields-API.htm
+// Eloqua API docs: https://goo.gl/Y8sF8P
 type ContactFieldService struct {
 	client *Client
 }

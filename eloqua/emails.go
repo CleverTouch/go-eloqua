@@ -7,7 +7,7 @@ import (
 // EmailService provides access to all the endpoints related
 // to email assets within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Emails/emails-API.htm
+// Eloqua API docs: https://goo.gl/BaqLvm
 type EmailService struct {
 	client *Client
 }

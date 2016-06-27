@@ -7,7 +7,7 @@ import (
 // ExternalActivityService provides access to all the endpoints related
 // to External Activity data within eloqua.
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/2.0 Endpoints/External activities/get-data-externalActivity.htm
+// Eloqua API docs: https://goo.gl/M7Fm5F
 type ExternalActivityService struct {
 	client *Client
 }

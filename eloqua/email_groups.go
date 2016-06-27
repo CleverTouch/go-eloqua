@@ -7,7 +7,7 @@ import (
 // EmailGroupService provides access to all the endpoints related
 // to email group data within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Email groups/post-assets-emailGroup.htm
+// Eloqua API docs: https://goo.gl/e21Rrq
 type EmailGroupService struct {
 	client *Client
 }

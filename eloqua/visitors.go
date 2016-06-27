@@ -3,7 +3,7 @@ package eloqua
 // VisitorService provides access to all the endpoints related
 // to Visitor data within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/2.0 Endpoints/Visitors/visitorData-API.htm
+// Eloqua API docs: https://goo.gl/r5Ctvr
 type VisitorService struct {
 	client *Client
 }

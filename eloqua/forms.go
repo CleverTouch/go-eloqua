@@ -7,7 +7,7 @@ import (
 // FormService provides access to all the endpoints related
 // to form assets within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Forms/forms-API.htm
+// Eloqua API docs: https://goo.gl/WW0ehX
 type FormService struct {
 	client *Client
 }
@@ -72,7 +72,7 @@ type FieldValidation struct {
 // FormStep just holds the common fields.
 //
 // A list of the various 'FormStep*' types can be found here:
-// https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Forms/get-assets-form.htm
+// https://goo.gl/EhRfbg
 type FormStep struct {
 	Type     string `json:"type,omitempty"`
 	ID       int    `json:"id,omitempty,string"`

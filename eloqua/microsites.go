@@ -7,7 +7,7 @@ import (
 // MicrositeService provides access to all the endpoints related
 // to microsite data within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Microsites/microsites-API.htm
+// Eloqua API docs: https://goo.gl/lm34HJ
 type MicrositeService struct {
 	client *Client
 }

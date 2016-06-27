@@ -7,7 +7,7 @@ import (
 // LandingPageService provides access to all the endpoints related
 // to landingPage assets within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Landing pages/landingPages-API.htm
+// Eloqua API docs: https://goo.gl/FlLqLz
 type LandingPageService struct {
 	client *Client
 }

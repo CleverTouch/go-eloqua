@@ -7,7 +7,7 @@ import (
 // FormDataService provides access to all the endpoints related
 // to form data within eloqua.
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Form data/formData-API.htm
+// Eloqua API docs: https://goo.gl/tcISkr
 type FormDataService struct {
 	client *Client
 }

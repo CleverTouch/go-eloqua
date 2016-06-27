@@ -7,7 +7,7 @@ import (
 // EmailFolderService provides access to all the endpoints related
 // to email folder data within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Email folders/emailFolders-API.htm
+// Eloqua API docs: https://goo.gl/g8h8BN
 type EmailFolderService struct {
 	client *Client
 }

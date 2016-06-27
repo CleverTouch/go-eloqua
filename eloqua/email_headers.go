@@ -7,7 +7,7 @@ import (
 // EmailHeaderService provides access to all the endpoints related
 // to email header data within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Email headers/post-assets-emailHeader.htm
+// Eloqua API docs: https://goo.gl/aCdAXT
 type EmailHeaderService struct {
 	client *Client
 }

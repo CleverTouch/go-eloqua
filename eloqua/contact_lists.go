@@ -7,7 +7,7 @@ import (
 // ContactListService provides access to all the endpoints related
 // to contact list data within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/1.0 Endpoints/Contact lists/contactLists-API.htm
+// Eloqua API docs: https://goo.gl/iDY0iy
 type ContactListService struct {
 	client *Client
 }

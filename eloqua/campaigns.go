@@ -7,7 +7,7 @@ import (
 // CampaignService provides access to all the endpoints related
 // to campaign data within eloqua
 //
-// Eloqua API docs: https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCAB/#Developers/RESTAPI/2.0 Endpoints/Campaigns/campaigns-API.htm
+// Eloqua API docs: https://goo.gl/vWFRBX
 type CampaignService struct {
 	client *Client
 }
