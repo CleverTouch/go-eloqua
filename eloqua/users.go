@@ -35,12 +35,48 @@ type User struct {
 	DefaultAccountViewID int      `json:"defaultAccountViewId,omitempty,string"`
 	DefaultContactViewID int      `json:"defaultContactViewId,omitempty,string"`
 	EmailAddress         string   `json:"emailAddress,omitempty"`
-	// TODO - interfacePermissions
+
 	LoggedInAt string `json:"loggedInAt,omitempty"`
 	LoginName  string `json:"loginName,omitempty"`
-	// TODO - preferences
-	// TODO - productPermissions
-	// TODO - typePermissions
+
+	InterfacePermissions []InterfacePermission `json:"interfacePermissions,omitempty"`
+	Preferences          UserPreferences       `json:"preferences,omitempty"`
+	TypePermissions      []TypePermission      `json:"typePermissions,omitempty"`
+	ProductPermissions   []ProductPermission   `json:"productPermissions,omitempty"`
+}
+
+// UserPreferences holds user-specific Eloqua preferences.
+// This may be limited compared to what can possibly be fetched/set.
+type UserPreferences struct {
+	Type       string `json:"type,omitempty"`
+	TimezoneID int    `json:"timezoneId,omitempty,string"`
+}
+
+// InterfacePermission is a permission assigned to a user to control
+// the parts of the Eloqua interface they see.
+type InterfacePermission struct {
+	Type                       string                `json:"type,omitempty"`
+	InterfaceCode              string                `json:"interfaceCode,omitempty"`
+	NestedInterfacePermissions []InterfacePermission `json:"nestedInterfacePermissions,omitempty"`
+}
+
+// TypePermission represents the user's permissions for a particular Eloqua Type.
+type TypePermission struct {
+	Type        string          `json:"type,omitempty"`
+	ObjectType  string          `json:"objectType,omitempty"`
+	Permissions TypePermissions `json:"permissions,omitempty"`
+}
+
+// TypePermissions are the actual permission set on a TypePermission.
+type TypePermissions struct {
+	Type   string `json:"type,omitempty"`
+	Create bool   `json:"create,omitempty,string"`
+}
+
+// ProductPermission displays the access that the user has to particular Eloqua prouducts such as Profiler.
+type ProductPermission struct {
+	Type        string `json:"type,omitempty"`
+	ProductCode string `json:"productCode,omitempty"`
 }
 
 // Get an user object via its ID

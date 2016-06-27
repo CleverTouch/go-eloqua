@@ -36,7 +36,7 @@ The vast majority of Eloqua models have been created as golang structs.
 - [x] Landing pages - *Mostly done, Related objects to be added*
 - [x] Microsites
 - [x] Option lists
-- [x] Users - *Mostly done, Related objects to be added*
+- [x] Users
 - [x] Campaigns - *Campaign Elements only have basic representation*
 - [x] Custom objects
 - [x] Custom object data
