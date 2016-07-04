@@ -166,7 +166,7 @@ func (c *Client) RestRequest(endpoint string, method string, jsonData string) (*
 	endpoint = strings.Trim(endpoint, " /")
 
 	// Assume rest 2.0 if not in request
-	if strings.Index(endpoint, "api/rest") == -1 {
+	if strings.Index(endpoint, "api/") == -1 {
 		url += "/api/rest/2.0/"
 	} else {
 		url += "/"
