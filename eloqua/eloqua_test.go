@@ -129,13 +129,13 @@ func TestGetRequestListDecodeErrorHandling(t *testing.T) {
 func TestRequestDecodeErrorHandling(t *testing.T) {
 	setup()
 	defer teardown()
-	_, err := client.requestDecode("/%2///F a", "GET", nil)
+	_, err := client.RequestDecode("/%2///F a", "GET", nil)
 
 	if err == nil {
 		t.Error("Request expected to return error due to bad url format")
 	}
 
-	_, err = client.requestDecode("/a/non-existing/endpoint", "GET", nil)
+	_, err = client.RequestDecode("/a/non-existing/endpoint", "GET", nil)
 	if err == nil {
 		t.Error("Request expected to return error due to 404 response")
 	}
@@ -145,7 +145,7 @@ func TestRequestDecodeErrorHandling(t *testing.T) {
 		fmt.Fprint(w, "")
 	})
 	testModel := &ContactList{}
-	_, err = client.requestDecode("/assets/contact/lists", "GET", testModel)
+	_, err = client.RequestDecode("/assets/contact/lists", "GET", testModel)
 
 	if err != nil {
 		t.Error("Empty response should not cause EOF error an error was returned")
@@ -158,7 +158,7 @@ func TestRequestDecodeJSONErrorHandling(t *testing.T) {
 	defer teardown()
 
 	tMap := make(chan int)
-	_, err := client.requestDecode("/test/endpoint", "POST", tMap)
+	_, err := client.RequestDecode("/test/endpoint", "POST", tMap)
 
 	if err.Error() != "json: unsupported type: chan int" {
 		t.Error("POST request with invalid postdata not returning an error as expected")

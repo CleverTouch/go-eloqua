@@ -258,7 +258,7 @@ func (c *Client) getRequestListDecode(endpoint string, v interface{}, opts *List
 
 // Performs a HTTP request using the given method
 // and decodes the response into the provided interface
-func (c *Client) requestDecode(endpoint string, method string, v interface{}) (*Response, error) {
+func (c *Client) RequestDecode(endpoint string, method string, v interface{}) (*Response, error) {
 
 	postBody := ""
 
@@ -296,12 +296,12 @@ func (c *Client) requestDecode(endpoint string, method string, v interface{}) (*
 
 // Performs a POST request and decodes the response into the provided interface
 func (c *Client) postRequestDecode(endpoint string, v interface{}) (*Response, error) {
-	return c.requestDecode(endpoint, "POST", v)
+	return c.RequestDecode(endpoint, "POST", v)
 }
 
 // Performs a PUT request and decodes the response into the provided interface
 func (c *Client) putRequestDecode(endpoint string, v interface{}) (*Response, error) {
-	return c.requestDecode(endpoint, "PUT", v)
+	return c.RequestDecode(endpoint, "PUT", v)
 }
 
 // Performs a DELETE request to the provided endpoint, sending the provided interface data.
