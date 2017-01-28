@@ -7,6 +7,7 @@ import (
 	"reflect"
 	"strings"
 	"testing"
+	"io/ioutil"
 )
 
 var (
@@ -27,6 +28,10 @@ func setup() {
 	server = httptest.NewServer(mux)
 	// Create Eloqua test client
 	client = NewClient(server.URL, "TestCompany", "John.Smith", "mysecret")
+}
+
+func addCustomHandlerFunc(endpoint string, handler func(http.ResponseWriter, *http.Request)) {
+	mux.HandleFunc(endpoint, handler)
 }
 
 func addRestHandlerFunc(endpoint string, handler func(http.ResponseWriter, *http.Request)) {
@@ -230,5 +235,34 @@ func TestEloquaDefaultErrorResponse(t *testing.T) {
 
 	if resp.ErrorContent != responseMessage {
 		t.Errorf("Failed request content not in request body as expected.\nExpected: %s\nRecieved:%s", responseMessage, resp.ErrorContent)
+	}
+}
+
+func TestCustomJSONRequest(t *testing.T) {
+	setup()
+	defer teardown()
+
+	input := `{"name":"tester"}`
+
+	addCustomHandlerFunc("/test/contact", func(w http.ResponseWriter, req *http.Request) {
+		testMethod(t, req, "POST")
+		defer req.Body.Close()
+		body, _ := ioutil.ReadAll(req.Body)
+		if (string(body) != input) {
+			t.Errorf("Custom request body not as expected. \nExpected:\n%s\nRecieved:\n%s", input, body)
+		}
+	})
+
+	_, err := client.CustomJSONRequest(server.URL + "/test/contact", "POST", input)
+	if err != nil {
+		t.Errorf("Custom request response failed, Recieved error: %s", err.Error())
+	}
+	res, err := client.CustomJSONRequest(server.URL + "/test/notEndpoint", "GET", input)
+	if res.StatusCode != 404 {
+		t.Errorf("Expected 404 response code, Recieved %d code", res.StatusCode)
+	}
+	_, err = client.CustomJSONRequest(server.URL + "/%2///F a", "CAT", input)
+	if err == nil {
+		t.Error("Expected http request error due to invalid url but no error was received")
 	}
 }

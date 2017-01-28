@@ -188,6 +188,30 @@ func (c *Client) RestRequest(endpoint string, method string, jsonData string) (*
 	return newResponse(resp), err
 }
 
+// CustomJSONRequest performs a HTTP request with a JSON string body to any endpoint
+// with Eloqua authentication. The client base url is not used here, allowing a completely
+// custom endpoint to be used when required.
+func (c *Client) CustomJSONRequest(endpoint string, method string, jsonData string) (*Response, error) {
+	url := endpoint
+
+	// fmt.Println(jsonData)
+	jsonStr := []byte(jsonData)
+	req, err := http.NewRequest(strings.ToUpper(method), url, bytes.NewBuffer(jsonStr))
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Authorization", c.authHeader)
+	req.Header.Add("Content-Type", "application/json")
+
+	resp, err := c.client.Do(req)
+	elqResp := newResponse(resp);
+	if err == nil {
+		err = checkResponse(elqResp)
+	}
+	return elqResp, err
+}
+
 // Performs a GET request and decodes the response into the provided interface
 func (c *Client) getRequestDecode(endpoint string, v interface{}) (*Response, error) {
 	resp, err := c.RestRequest(endpoint, "GET", "")
